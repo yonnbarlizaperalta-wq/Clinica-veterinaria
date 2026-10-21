@@ -29,6 +29,7 @@ Abre <http://127.0.0.1:8000/admin/>. El comando `generar_entregable.ps1` crea tr
 - Agenda de citas con veterinario, mascota, estado, fecha y motivo.
 - Catálogo de vacunas y seguimiento de dosis, lote y próxima aplicación.
 - Filtros, búsqueda, listados y navegación entre registros desde el panel admin.
+- Grupos de permisos `Recepcionista` y `Veterinario`, además del superusuario administrador.
 - Base `db.sqlite3` incluida con registros demo precargados.
 
 ## Modelo de datos

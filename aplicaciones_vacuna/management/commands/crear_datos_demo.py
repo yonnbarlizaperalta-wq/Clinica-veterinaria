@@ -1,6 +1,7 @@
 import os
 from datetime import date, datetime, time, timedelta
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from propietarios_core.models import Propietario
@@ -42,4 +43,24 @@ class Command(BaseCommand):
         User = get_user_model()
         if not User.objects.filter(username=user).exists():
             User.objects.create_superuser(username=user, email='admin@huellitas.local', password=password)
+        groups = {
+            'Recepcionista': {
+                'propietarios_core': ('view_propietario','add_propietario','change_propietario'),
+                'mascotas': ('view_mascota','add_mascota','change_mascota'),
+                'citas': ('view_cita','add_cita','change_cita'),
+                'veterinarios': ('view_veterinario',),
+            },
+            'Veterinario': {
+                'mascotas': ('view_mascota',),
+                'historias_clinicas': ('view_historiaclinica','add_historiaclinica','change_historiaclinica'),
+                'citas': ('view_cita','change_cita'),
+                'vacunas': ('view_vacuna',),
+                'aplicaciones_vacuna': ('view_aplicacionvacuna','add_aplicacionvacuna','change_aplicacionvacuna'),
+            },
+        }
+        for group_name, app_permissions in groups.items():
+            group, _ = Group.objects.get_or_create(name=group_name)
+            permissions = Permission.objects.filter(content_type__app_label__in=app_permissions)
+            allowed = [codename for codes in app_permissions.values() for codename in codes]
+            group.permissions.set(permissions.filter(codename__in=allowed))
         self.stdout.write(self.style.SUCCESS('Datos demo listos: 3 registros por cada una de las 7 tablas y superusuario disponible.'))
