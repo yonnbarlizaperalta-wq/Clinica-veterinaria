@@ -16,6 +16,18 @@ python -m venv .venv
 .\.venv\Scripts\python.exe manage.py runserver
 ```
 
+### VS Code: Django no se puede resolver
+
+Si Pylance subraya `django` con el aviso `could not be resolved from source`, selecciona **Python: Select Interpreter** desde la paleta de comandos (`Ctrl+Shift+P`) y elige `.venv\Scripts\python.exe`. Este proyecto incluye una preferencia de intérprete para esa ruta. Si el entorno aún no tiene dependencias, abre una terminal en la carpeta del proyecto y ejecuta:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe manage.py check
+```
+
+Después selecciona el intérprete del entorno o reinicia Pylance con **Python: Restart Language Server**. El aviso del editor es de análisis estático; se corrige cuando VS Code usa el entorno que contiene Django.
+
 Abre <http://127.0.0.1:8000/admin/>. El comando `generar_entregable.ps1` crea tres registros por tabla y el superusuario demo si no existe. Credenciales locales de demostración: **admin / Huellitas2026!**. Cambia esa contraseña antes de usar el sistema fuera de una demostración local. Para elegir otra credencial durante la generación:
 
 ```powershell
