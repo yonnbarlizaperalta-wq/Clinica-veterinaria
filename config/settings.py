@@ -3,6 +3,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'dev-only-clinica-veterinaria-2026'
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
+LOGIN_URL = '/acceder/'
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
     'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles',

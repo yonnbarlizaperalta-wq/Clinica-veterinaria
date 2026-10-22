@@ -1,0 +1,9 @@
+{% extends 'portal/base.html' %}
+{% block title %}Calendario de citas{% endblock %}
+{% block content %}
+<section class="dashboard-page calendar-page"><a class="back-link" href="{% if personal %}{% url 'agenda_personal' %}{% else %}{% url 'mi_cuenta' %}{% endif %}">← Volver</a><div class="calendar-heading"><div><span class="portal-eyebrow">AGENDA HUELLITAS</span><h1>{{ mes }} <em>{{ year }}</em></h1><p>{{ citas_mes }} cita{{ citas_mes|pluralize:'s' }} programada{{ citas_mes|pluralize:'s' }} este mes.</p></div><div class="calendar-controls"><a href="?year={{ prev_year }}&month={{ prev_month }}" aria-label="Mes anterior">←</a><a href="?year={{ next_year }}&month={{ next_month }}" aria-label="Mes siguiente">→</a></div></div>
+<div class="calendar-legend"><span><i></i> Día con citas</span><span class="legend-today"><i></i> Hoy</span></div>
+<div class="calendar-grid"><div class="calendar-weekdays">{% for dia in weekdays %}<span>{{ dia }}</span>{% endfor %}</div>
+{% for week in weeks %}<div class="calendar-week">{% for cell in week %}<div class="calendar-day {% if not cell.day %}day-empty{% endif %} {% if cell.today %}day-today{% endif %} {% if cell.citas %}day-booked{% endif %}">{% if cell.day %}<span class="day-number">{{ cell.day }}</span>{% if cell.citas %}<span class="day-count">{{ cell.citas|length }} cita{{ cell.citas|length|pluralize:'s' }}</span><div class="day-events">{% for cita in cell.citas %}<div class="day-event"><b>{{ cita.fecha_hora|date:'H:i' }}</b> {% if personal %}{{ cita.mascota.nombre }}{% else %}{{ cita.mascota.nombre }} · {{ cita.motivo }}{% endif %}</div>{% endfor %}</div>{% endif %}{% endif %}</div>{% endfor %}</div>{% endfor %}</div>
+{% if not personal %}<a class="button button-green calendar-book" href="{% url 'nueva_cita' %}">Solicitar una cita <span>↗</span></a>{% endif %}</section>
+{% endblock %}

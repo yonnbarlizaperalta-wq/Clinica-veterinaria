@@ -36,14 +36,22 @@ Abre <http://127.0.0.1:8000/admin/>. El comando `generar_entregable.ps1` crea tr
 .\generar_entregable.ps1 -AdminUser miusuario -AdminPassword 'UnaClaveSegura'
 ```
 
+Cuentas demo del portal del personal: **recepcionista@demo.local / Recepcion2026!** y **veterinario@demo.local / Veterinario2026!**. Los propietarios crean su cuenta desde “Agenda su visita”; esta queda vinculada a sus mascotas. Cada propietario solo puede consultar las mascotas, citas e historias clínicas de su perfil.
+
+Cuentas demo del portal del personal: **recepcionista@demo.local / Recepcion2026!** y **veterinario@demo.local / Veterinario2026!**. Los propietarios crean su cuenta desde “Agenda su visita”; esta queda vinculada a sus mascotas. Cada propietario solo puede consultar las mascotas, citas e historias clínicas de su perfil.
+
 ## Funcionalidades
 
 - Registro y búsqueda de propietarios con sus mascotas dentro del mismo formulario.
 - Ficha de mascota con historia clínica (1:1) y aplicaciones de vacunas (entidad intermedia).
 - Agenda de citas con veterinario, mascota, estado, fecha y motivo.
 - Portada pública de la clínica con servicios, equipo veterinario y resumen de actividad.
+- Registro de propietarios y mascotas desde el sitio, solicitud de citas, calendario e historias clínicas protegidas por cuenta.
+- Agenda para recepción y veterinaria: programar citas, completar consultas y registrar vacunas desde el portal.
 - Catálogo de vacunas y seguimiento de dosis, lote y próxima aplicación.
 - Filtros, búsqueda, listados y navegación entre registros desde el panel admin.
+- Registro de propietarios y mascotas desde el sitio, solicitud de citas, calendario e historias clínicas protegidas por cuenta.
+- Agenda de recepción/veterinaria para programar citas, escribir notas clínicas y registrar vacunas sin entrar al admin.
 - Grupos de permisos `Recepcionista` y `Veterinario`, además del superusuario administrador.
 - Base `db.sqlite3` incluida con registros demo precargados.
 

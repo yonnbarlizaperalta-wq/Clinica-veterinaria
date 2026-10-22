@@ -1,0 +1,15 @@
+{% extends 'portal/base.html' %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-art"><span class="auth-art-mark">✳</span><p>Todo lo que necesitas<br>para cuidar de <em>quien más quieres.</em></p><span class="auth-paw">🐾</span></div>
+  <div class="auth-card"><span class="portal-eyebrow">TU ESPACIO EN HUELLITAS</span><h1>Qué bueno<br><em>verte de nuevo.</em></h1><p class="muted">Ingresa para consultar sus citas, vacunas e historia clínica.</p>
+    <form method="post" class="portal-form">{% csrf_token %}
+      {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+      {% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}{% for error in field.errors %}<span class="field-error">{{ error }}</span>{% endfor %}</div>{% endfor %}
+      <button class="button button-dark form-submit" type="submit">Ingresar a mi cuenta <span>↗</span></button>
+    </form>
+    <p class="auth-switch">¿Todavía no tienes cuenta? <a href="{% url 'registrar' %}">Regístrate aquí</a></p>
+  </div>
+</section>
+{% endblock %}

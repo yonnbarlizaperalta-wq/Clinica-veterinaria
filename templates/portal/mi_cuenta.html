@@ -1,0 +1,20 @@
+{% extends 'portal/base.html' %}
+{% block title %}Mi cuenta{% endblock %}
+{% block content %}
+<section class="dashboard-page">
+  <div class="dashboard-welcome"><div><span class="portal-eyebrow">TU FAMILIA EN HUELLITAS</span><h1>Hola, {{ propietario.nombres }} <span>✳</span></h1><p>Aquí tienes todo lo importante para cuidar de tus mascotas.</p></div><a class="button button-green" href="{% url 'nueva_cita' %}">Solicitar una cita <span>↗</span></a></div>
+  <div class="dashboard-shortcuts"><a href="{% url 'calendario' %}"><span>▦</span><div><b>Calendario</b><small>Revisa los días de tus citas</small></div><span class="shortcut-arrow">↗</span></a><a href="{% url 'nueva_cita' %}"><span>＋</span><div><b>Agendar visita</b><small>Elige mascota, fecha y veterinario</small></div><span class="shortcut-arrow">↗</span></a></div>
+  <section class="portal-section"><div class="portal-section-title"><div><span class="portal-eyebrow">01 — SUS COMPAÑEROS</span><h2>Mis mascotas</h2></div><div class="section-title-actions"><span class="count-pill">{{ mascotas|length }} registradas</span><a class="under-link" href="{% url 'nueva_mascota' %}">＋ Registrar mascota</a></div></div>
+    {% if mascotas %}<div class="pet-grid">{% for mascota in mascotas %}<article class="pet-card"><div class="pet-card-art pet-tone-{{ forloop.counter }}"><span>{% if mascota.especie == 'Felino' %}🐱{% elif mascota.especie == 'Canino' %}🐶{% else %}🐾{% endif %}</span><small>{{ mascota.especie }}</small></div><div class="pet-card-body"><span class="portal-eyebrow">{{ mascota.raza|default:'RAZA NO INDICADA'|upper }}</span><h3>{{ mascota.nombre }}</h3><p>{% if mascota.sexo == 'M' %}Macho{% else %}Hembra{% endif %}{% if mascota.fecha_nacimiento %} · Nació {{ mascota.fecha_nacimiento|date:'d/m/Y' }}{% endif %}</p><a class="under-link" href="{% url 'historia_mascota' mascota.mascota_id %}">Ver historia clínica <span>↗</span></a></div></article>{% endfor %}</div>
+    {% else %}<div class="empty-state"><span>🐾</span><p>Aún no hay mascotas en tu cuenta.</p><a href="{% url 'registrar' %}">Registra a tu primera mascota</a></div>{% endif %}
+  </section>
+  <section class="portal-section"><div class="portal-section-title"><div><span class="portal-eyebrow">02 — PRÓXIMAS VISITAS</span><h2>Mis citas</h2></div><a class="under-link" href="{% url 'calendario' %}">Ver calendario <span>↗</span></a></div>
+    {% if citas %}<div class="appointment-list">{% for cita in citas %}<article class="appointment-row"><div class="appointment-date"><b>{{ cita.fecha_hora|date:'d' }}</b><span>{{ cita.fecha_hora|date:'M'|upper }}</span></div><div class="appointment-detail"><b>{{ cita.mascota.nombre }} <span>· {{ cita.motivo }}</span></b><small>{{ cita.fecha_hora|date:'l d \d\e F, H:i' }} · {{ cita.veterinario }}</small></div><span class="status-pill status-{{ cita.estado|lower }}">{{ cita.get_estado_display }}</span></article>{% endfor %}</div>
+    {% else %}<div class="empty-state"><p>No tienes citas todavía. Puedes pedir una cuando quieras.</p><a href="{% url 'nueva_cita' %}">Solicitar una cita</a></div>{% endif %}
+  </section>
+  <section class="portal-section"><div class="portal-section-title"><div><span class="portal-eyebrow">03 — PREVENCIÓN AL DÍA</span><h2>Vacunas aplicadas</h2></div></div>
+    {% if vacunas %}<div class="vaccine-list">{% for aplicacion in vacunas %}<article><span class="vaccine-icon">✳</span><div><b>{{ aplicacion.vacuna.nombre }}</b><small>{{ aplicacion.mascota.nombre }} · {{ aplicacion.fecha|date:'d/m/Y' }} · Dosis {{ aplicacion.dosis }}</small></div>{% if aplicacion.proxima_fecha %}<span class="next-vaccine">Próxima: {{ aplicacion.proxima_fecha|date:'d/m/Y' }}</span>{% endif %}</article>{% endfor %}</div>
+    {% else %}<div class="empty-state"><p>Cuando registremos sus vacunas, aparecerán aquí.</p></div>{% endif %}
+  </section>
+</section>
+{% endblock %}

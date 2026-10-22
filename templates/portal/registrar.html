@@ -1,0 +1,17 @@
+{% extends 'portal/base.html' %}
+{% block title %}Crear cuenta{% endblock %}
+{% block content %}
+<section class="form-page">
+  <div class="page-heading"><span class="portal-eyebrow">UN PRIMER PASO PARA CUIDARLOS</span><h1>Registra a tu familia<br><em>en Huellitas.</em></h1><p>Crea tu cuenta y la historia clínica de tu mascota. Luego podrás pedir citas y consultar su seguimiento.</p></div>
+  <form method="post" class="portal-form form-panel">{% csrf_token %}
+    {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+    <h2>Tu cuenta</h2><div class="form-grid">
+    {% for field in form %}{% if field.name == 'nombres' %}</div><h2>Tus datos</h2><div class="form-grid">{% elif field.name == 'mascota_nombre' %}</div><h2>Tu mascota</h2><div class="form-grid">{% endif %}
+      <div class="field {% if field.name == 'direccion' or field.name == 'password' or field.name == 'password_confirm' %}field-wide{% endif %}">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{% for error in field.errors %}<span class="field-error">{{ error }}</span>{% endfor %}</div>
+    {% endfor %}</div>
+    <button class="button button-dark form-submit" type="submit">Crear mi cuenta <span>↗</span></button>
+    <p class="form-privacy">Tus datos se usan para gestionar la atención veterinaria de tus mascotas.</p>
+  </form>
+  <p class="auth-switch">¿Ya tienes cuenta? <a href="{% url 'ingresar' %}">Inicia sesión</a></p>
+</section>
+{% endblock %}

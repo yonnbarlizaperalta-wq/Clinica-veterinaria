@@ -63,4 +63,14 @@ class Command(BaseCommand):
             permissions = Permission.objects.filter(content_type__app_label__in=app_permissions)
             allowed = [codename for codes in app_permissions.values() for codename in codes]
             group.permissions.set(permissions.filter(codename__in=allowed))
+        demo_staff = [
+            ('recepcionista@demo.local','Recepcion2026!','Clara','Recepción','Recepcionista'),
+            ('veterinario@demo.local','Veterinario2026!','Diego','Veterinario','Veterinario'),
+        ]
+        for username, staff_password, first_name, last_name, group_name in demo_staff:
+            staff_user, created = User.objects.get_or_create(username=username, defaults={'email':username,'first_name':first_name,'last_name':last_name,'is_staff':False})
+            if created:
+                staff_user.set_password(staff_password)
+                staff_user.save(update_fields=['password'])
+            staff_user.groups.add(Group.objects.get(name=group_name))
         self.stdout.write(self.style.SUCCESS('Datos demo listos: 3 registros por cada una de las 7 tablas y superusuario disponible.'))

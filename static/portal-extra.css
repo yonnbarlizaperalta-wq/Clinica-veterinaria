@@ -1,0 +1,2 @@
+.section-title-actions{display:flex;align-items:center;gap:14px}.history-general{margin-top:14px}.staff-actions{justify-content:flex-end}.portal-nav form{display:inline-flex}
+@media(max-width:600px){.section-title-actions{align-items:flex-end;flex-direction:column;gap:8px}.section-title-actions .under-link{font-size:9px}.staff-actions{justify-content:flex-start}}

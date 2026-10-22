@@ -1,0 +1,6 @@
+{% extends 'portal/base.html' %}
+{% block title %}Solicitar una cita{% endblock %}
+{% block content %}
+<section class="form-page form-page-narrow"><a class="back-link" href="{% if personal %}{% url 'agenda_personal' %}{% else %}{% url 'mi_cuenta' %}{% endif %}">← Volver</a><div class="page-heading"><span class="portal-eyebrow">UN ESPACIO PARA SU BIENESTAR</span><h1>{% if personal %}Agenda una<br>{% else %}Solicita una<br>{% endif %}<em>cita veterinaria.</em></h1><p>Elige a quién traer, con quién quieres atenderte y el horario que te funciona.</p></div>
+<form method="post" class="portal-form form-panel">{% csrf_token %}{% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}<div class="form-grid">{% for field in form %}<div class="field {% if field.name == 'motivo' %}field-wide{% endif %}">{{ field.label_tag }}{{ field }}{% for error in field.errors %}<span class="field-error">{{ error }}</span>{% endfor %}</div>{% endfor %}</div><button class="button button-dark form-submit" type="submit">{% if personal %}Agendar esta cita{% else %}Solicitar esta cita{% endif %} <span>↗</span></button><p class="form-privacy">La cita quedará registrada como programada y aparecerá en tu calendario.</p></form></section>
+{% endblock %}
