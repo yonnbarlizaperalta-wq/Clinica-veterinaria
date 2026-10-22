@@ -10,7 +10,7 @@ Sistema web académico para gestionar una clínica veterinaria. Permite registra
 
 ## Funcionalidades
 
-- **Propietarios:** crean una cuenta, registran sus mascotas, solicitan citas y consultan el calendario, las historias clínicas y las vacunas de sus propias mascotas.
+- **Propietarios:** crean una cuenta, registran sus mascotas, solicitan citas y consultan el calendario, las historias clínicas y las vacunas de sus propias mascotas. La cuenta de demostración también permite recorrer este flujo.
 - **Recepcionista:** consulta la agenda de la clínica y agenda citas para los propietarios y sus mascotas.
 - **Veterinario:** consulta y atiende las citas asignadas a su ficha, actualiza la historia clínica y registra vacunas.
 - **Administrador:** gestiona los usuarios, los grupos de permisos y los datos de la clínica desde Django Admin. Vincula la cuenta de cada veterinario con su ficha.
@@ -48,14 +48,20 @@ Para preparar la base de datos sin el script, ejecuta:
 - **Propietarios y personal:** selecciona “Acceso clientes y equipo” o visita <http://127.0.0.1:8000/acceder/>. El sistema dirige a cada persona al panel según su cuenta.
 - **Administración:** <http://127.0.0.1:8000/admin/>. Cuenta de demostración inicial: `admin` / `Huellitas2026!`.
 
-Cuentas demostrativas del personal:
+Cuentas demostrativas para probar el sistema:
 
 | Rol | Usuario | Contraseña |
 |---|---|---|
+| Administrador | `admin` | `Huellitas2026!` |
 | Recepcionista | `recepcionista@demo.local` | `Recepcion2026!` |
-| Veterinario | `veterinario@demo.local` | `Veterinario2026!` |
+| Propietario | `propietario1@demo.local` | `Propietario2026!` |
+| Veterinaria: Ana Torres | `ana.torres@demo.local` | `AnaVet2026!` |
+| Veterinario: Juan Ruiz | `juan.ruiz@demo.local` | `JuanVet2026!` |
+| Veterinaria: Sofía Mora | `sofia.mora@demo.local` | `SofiaVet2026!` |
 
-La cuenta demostrativa de veterinario está vinculada a la ficha de Ana Torres. Para crear cuentas reales del equipo, el administrador crea el usuario en Django Admin, lo agrega al grupo `Recepcionista` o `Veterinario` y, si es veterinario, lo vincula también en la ficha correspondiente desde **Veterinarios**. Las contraseñas anteriores son solo para la demostración local; cámbialas antes de cualquier despliegue.
+La cuenta de propietario está vinculada a Laura Pérez y a su mascota Luna. Cada cuenta veterinaria está vinculada a su propia ficha; la agenda y las consultas de cada veterinario muestran solo las citas asignadas a esa ficha. Así se pueden probar las citas de Juan y Sofía por separado. El calendario no contiene citas ficticias: las citas de prueba se crean desde el portal del propietario o desde recepción. Estas credenciales son solo para la demostración local; cámbialas antes de cualquier despliegue.
+
+Para crear cuentas reales del equipo, el administrador crea el usuario en Django Admin, lo agrega al grupo `Recepcionista` o `Veterinario` y, si es veterinario, lo vincula también en la ficha correspondiente desde **Veterinarios**.
 
 ## Modelo de datos
 

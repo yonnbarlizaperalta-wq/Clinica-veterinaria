@@ -40,6 +40,17 @@ class Command(BaseCommand):
         User = get_user_model()
         if not User.objects.filter(username=user).exists():
             User.objects.create_superuser(username=user, email='admin@huellitas.local', password=password)
+        demo_owner = props[0]
+        client, client_created = User.objects.get_or_create(
+            username='propietario1@demo.local',
+            defaults={'email':'propietario1@demo.local','first_name':demo_owner.nombres,'last_name':demo_owner.apellidos},
+        )
+        if client_created:
+            client.set_password('Propietario2026!')
+            client.save(update_fields=['password'])
+        if demo_owner.usuario_id in (None, client.pk):
+            demo_owner.usuario = client
+            demo_owner.save(update_fields=['usuario'])
         groups = {
             'Recepcionista': {
                 'propietarios_core': ('view_propietario','add_propietario','change_propietario'),
@@ -62,7 +73,6 @@ class Command(BaseCommand):
             group.permissions.set(permissions.filter(codename__in=allowed))
         demo_staff = [
             ('recepcionista@demo.local','Recepcion2026!','Clara','Recepción','Recepcionista'),
-            ('veterinario@demo.local','Veterinario2026!','Diego','Veterinario','Veterinario'),
         ]
         for username, staff_password, first_name, last_name, group_name in demo_staff:
             staff_user, created = User.objects.get_or_create(username=username, defaults={'email':username,'first_name':first_name,'last_name':last_name,'is_staff':False})
@@ -70,9 +80,34 @@ class Command(BaseCommand):
                 staff_user.set_password(staff_password)
                 staff_user.save(update_fields=['password'])
             staff_user.groups.add(Group.objects.get(name=group_name))
-            if group_name == 'Veterinario':
-                vet = Veterinario.objects.get(documento='VET-DEMO-001')
-                if vet.usuario_id in (None, staff_user.pk):
-                    vet.usuario = staff_user
-                    vet.save(update_fields=['usuario'])
-        self.stdout.write(self.style.SUCCESS('Datos demo y cuentas del personal listos; no se crearon citas de ejemplo.'))
+
+        demo_vets = [
+            ('ana.torres@demo.local','AnaVet2026!','Ana','Torres','VET-DEMO-001'),
+            ('juan.ruiz@demo.local','JuanVet2026!','Juan','Ruiz','VET-DEMO-002'),
+            ('sofia.mora@demo.local','SofiaVet2026!','Sofía','Mora','VET-DEMO-003'),
+        ]
+        for username, staff_password, first_name, last_name, document in demo_vets:
+            vet = Veterinario.objects.get(documento=document)
+            legacy_user = vet.usuario if vet.usuario_id and vet.usuario.username == 'veterinario@demo.local' else None
+            if legacy_user and not User.objects.filter(username=username).exclude(pk=legacy_user.pk).exists():
+                staff_user = legacy_user
+                staff_user.username = username
+                staff_user.email = username
+                staff_user.first_name = first_name
+                staff_user.last_name = last_name
+                staff_user.set_password(staff_password)
+                staff_user.save()
+                created = False
+            else:
+                staff_user, created = User.objects.get_or_create(
+                    username=username,
+                    defaults={'email':username,'first_name':first_name,'last_name':last_name,'is_staff':False},
+                )
+            if created:
+                staff_user.set_password(staff_password)
+                staff_user.save(update_fields=['password'])
+            staff_user.groups.add(Group.objects.get(name='Veterinario'))
+            if vet.usuario_id in (None, staff_user.pk):
+                vet.usuario = staff_user
+                vet.save(update_fields=['usuario'])
+        self.stdout.write(self.style.SUCCESS('Datos demo y cuentas por rol listas; no se crearon citas de ejemplo.'))
