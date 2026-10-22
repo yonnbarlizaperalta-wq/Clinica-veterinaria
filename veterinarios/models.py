@@ -1,6 +1,7 @@
 from django.db import models
 class Veterinario(models.Model):
     veterinario_id = models.BigAutoField(primary_key=True)
+    usuario = models.OneToOneField('auth.User', on_delete=models.SET_NULL, null=True, blank=True, related_name='perfil_veterinario')
     nombres = models.CharField(max_length=80)
     apellidos = models.CharField(max_length=80)
     documento = models.CharField(max_length=20, unique=True)

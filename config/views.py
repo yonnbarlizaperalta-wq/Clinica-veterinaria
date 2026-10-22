@@ -71,8 +71,22 @@ def es_personal(user):
     return user.is_authenticated and (user.is_staff or user.is_superuser or user.groups.filter(name__in=['Recepcionista','Veterinario']).exists())
 
 
-def requiere_personal(user):
-    if not es_personal(user):
+def es_administrador(user):
+    return user.is_authenticated and (user.is_staff or user.is_superuser)
+
+
+def pertenece_rol(user, *roles):
+    return user.is_authenticated and user.groups.filter(name__in=roles).exists()
+
+
+def veterinario_asignado(user):
+    if es_administrador(user):
+        return None
+    return Veterinario.objects.filter(usuario=user, activo=True).first()
+
+
+def requiere_personal(user, *roles):
+    if not es_administrador(user) and not pertenece_rol(user, *(roles or ('Recepcionista','Veterinario'))):
         raise PermissionDenied
 
 
@@ -128,7 +142,7 @@ def nueva_cita(request):
 
 @login_required
 def nueva_cita_personal(request):
-    requiere_personal(request.user)
+    requiere_personal(request.user, 'Recepcionista')
     form=NuevaCitaForm(request.POST or None,personal=True)
     if request.method=='POST' and form.is_valid():
         data=form.cleaned_data
@@ -148,7 +162,10 @@ def nueva_cita_personal(request):
 def historia_mascota(request, mascota_id):
     mascota=get_object_or_404(Mascota.objects.select_related('propietario'),mascota_id=mascota_id)
     if es_personal(request.user):
-        requiere_personal(request.user)
+        requiere_personal(request.user, 'Veterinario')
+        vet=veterinario_asignado(request.user)
+        if vet and not es_administrador(request.user) and not Cita.objects.filter(mascota=mascota,veterinario=vet).exists():
+            raise PermissionDenied
     elif mascota.propietario.usuario_id != request.user.id:
         raise PermissionDenied
     try:
@@ -180,6 +197,9 @@ def calendario(request):
     query=Cita.objects.filter(fecha_hora__date__gte=start,fecha_hora__date__lte=end).exclude(estado=Cita.Estado.CANCELADA).select_related('mascota','veterinario').order_by('fecha_hora')
     if owner:
         query=query.filter(mascota__propietario=owner)
+    elif pertenece_rol(request.user, 'Veterinario') and not es_administrador(request.user):
+        vet=veterinario_asignado(request.user)
+        query=query.filter(veterinario=vet) if vet else query.none()
     by_day={}
     for cita in query:
         day=timezone.localtime(cita.fecha_hora).day
@@ -201,14 +221,22 @@ def calendario(request):
 def agenda_personal(request):
     requiere_personal(request.user)
     today=timezone.localdate()
-    citas=Cita.objects.filter(fecha_hora__date__gte=today).select_related('mascota','mascota__propietario','veterinario').order_by('fecha_hora')[:60]
-    return render(request,'portal/agenda_personal.html',{'citas':citas,'hoy':today})
+    citas=Cita.objects.filter(fecha_hora__date__gte=today).select_related('mascota','mascota__propietario','veterinario').order_by('fecha_hora')
+    if pertenece_rol(request.user,'Veterinario') and not es_administrador(request.user):
+        vet=veterinario_asignado(request.user)
+        citas=citas.filter(veterinario=vet) if vet else citas.none()
+    citas=citas[:60]
+    return render(request,'portal/agenda_personal.html',{'citas':citas,'hoy':today,'es_admin':es_administrador(request.user),'es_recepcionista':pertenece_rol(request.user,'Recepcionista') and not es_administrador(request.user),'es_veterinario':pertenece_rol(request.user,'Veterinario') and not es_administrador(request.user),'perfil_veterinario':veterinario_asignado(request.user) if pertenece_rol(request.user,'Veterinario') and not es_administrador(request.user) else True})
 
 
 @login_required
 def atender_cita(request,cita_id):
-    requiere_personal(request.user)
-    cita=get_object_or_404(Cita.objects.select_related('mascota','veterinario','mascota__propietario'),cita_id=cita_id)
+    requiere_personal(request.user, 'Veterinario')
+    citas=Cita.objects.select_related('mascota','veterinario','mascota__propietario')
+    vet=veterinario_asignado(request.user)
+    if not es_administrador(request.user):
+        citas=citas.filter(veterinario=vet) if vet else citas.none()
+    cita=get_object_or_404(citas,cita_id=cita_id)
     historia,_=HistoriaClinica.objects.get_or_create(mascota=cita.mascota,defaults={'fecha_apertura':timezone.localdate()})
     form=ActualizarCitaForm(request.POST or None,instance=cita)
     historia_form=HistoriaClinicaForm(request.POST or None,instance=historia,prefix='historia')
@@ -223,8 +251,12 @@ def atender_cita(request,cita_id):
 
 @login_required
 def registrar_vacuna(request):
-    requiere_personal(request.user)
-    form=AplicacionVacunaForm(request.POST or None)
+    requiere_personal(request.user, 'Veterinario')
+    vet=veterinario_asignado(request.user)
+    if not es_administrador(request.user) and not vet:
+        messages.error(request,'Tu cuenta aún no está vinculada a un perfil veterinario. Pide al administrador que la asigne.')
+        return redirect('agenda_personal')
+    form=AplicacionVacunaForm(request.POST or None,veterinario=vet)
     if request.method=='POST' and form.is_valid():
         form.save()
         messages.success(request,'La aplicación de vacuna quedó registrada en la historia de la mascota.')

@@ -127,7 +127,7 @@ class AplicacionVacunaForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['mascota'].queryset = Mascota.objects.filter(activo=True).select_related('propietario')
         self.fields['vacuna'].queryset = Vacuna.objects.filter(activa=True)
-        self.fields['veterinario'].queryset = Veterinario.objects.filter(activo=True)
+        self.fields['veterinario'].queryset = Veterinario.objects.filter(activo=True, pk=veterinario.pk) if veterinario else Veterinario.objects.filter(activo=True)
         if veterinario:
             self.fields['veterinario'].initial = veterinario
 

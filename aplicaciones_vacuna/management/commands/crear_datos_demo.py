@@ -11,7 +11,7 @@ from vacunas.models import Vacuna
 from aplicaciones_vacuna.models import AplicacionVacuna
 
 class Command(BaseCommand):
-    help = 'Crea cuentas demo del personal y el superusuario local, sin citas ficticias.'
+    help = 'Crea datos demo y cuentas del personal, sin citas ficticias.'
 
     def handle(self, *args, **options):
         props = []
@@ -70,4 +70,9 @@ class Command(BaseCommand):
                 staff_user.set_password(staff_password)
                 staff_user.save(update_fields=['password'])
             staff_user.groups.add(Group.objects.get(name=group_name))
-        self.stdout.write(self.style.SUCCESS('Datos demo listos: 3 registros por cada una de las 7 tablas y superusuario disponible.'))
+            if group_name == 'Veterinario':
+                vet = Veterinario.objects.get(documento='VET-DEMO-001')
+                if vet.usuario_id in (None, staff_user.pk):
+                    vet.usuario = staff_user
+                    vet.save(update_fields=['usuario'])
+        self.stdout.write(self.style.SUCCESS('Datos demo y cuentas del personal listos; no se crearon citas de ejemplo.'))

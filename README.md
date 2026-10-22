@@ -36,7 +36,7 @@ Abre <http://127.0.0.1:8000/admin/>. El comando `generar_entregable.ps1` prepara
 .\generar_entregable.ps1 -AdminUser miusuario -AdminPassword 'UnaClaveSegura'
 ```
 
-Cuentas demo del portal del personal: **recepcionista@demo.local / Recepcion2026!** y **veterinario@demo.local / Veterinario2026!**. Los propietarios crean su cuenta desde “Agenda su visita”; esta queda vinculada a sus mascotas. Cada propietario solo puede consultar las mascotas, citas e historias clínicas de su perfil.
+Cuentas demo del portal del personal: **recepcionista@demo.local / Recepcion2026!** y **veterinario@demo.local / Veterinario2026!**. Ambos ingresan por “Acceso clientes y equipo”; recepción agenda y consulta citas, mientras veterinaria atiende solo las citas asignadas a su ficha y registra las vacunas aplicadas. El administrador crea cuentas de personal desde Administración → Usuarios y las agrega al grupo correspondiente; para veterinarios, también selecciona esa cuenta en Administración → Veterinarios. Los propietarios crean su cuenta desde “Crear cuenta” y solo consultan sus mascotas, citas e historias clínicas.
 
 ## Funcionalidades
 
