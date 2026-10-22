@@ -1,0 +1,119 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clínica veterinaria Huellitas: atención cercana para cada etapa de la vida de tu mascota.">
+  <title>Huellitas | Clínica veterinaria</title>
+  <link rel="stylesheet" href="{% static 'site.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Huellitas, inicio">
+      <span class="brand-mark" aria-hidden="true">h</span>
+      <span>huellitas<span class="brand-dot">.</span><small>CLÍNICA VETERINARIA</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#equipo">Nuestro equipo</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+    <a class="button button-dark header-cta" href="#servicios">Conoce la clínica <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow"><i></i> CUIDADO VETERINARIO CON CARIÑO</span>
+        <h1>Su mundo es pequeño.<br><em>Tu amor por él,</em><br>inmenso.</h1>
+        <p class="hero-lead">Acompañamos cada etapa de la vida de tu mascota con atención cercana, prevención y mucho amor.</p>
+        <div class="hero-actions">
+          <a class="button button-green" href="#servicios">Descubre nuestros servicios <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#equipo">Conoce al equipo <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatar-stack" aria-hidden="true"><span>🐶</span><span>🐱</span><span>🐾</span></div>
+          <p><strong>Un equipo que sí los conoce</strong><br>Atención con nombre propio y corazón.</p>
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Ilustración de un perro y un gato bajo el sol">
+        <div class="sun"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-label label-top"><span>✳</span> BIENESTAR, SIEMPRE</div>
+        <div class="pet-portrait">
+          <div class="pet-backdrop"></div>
+          <div class="cat"><span class="cat-ear left"></span><span class="cat-ear right"></span><span class="cat-head">🐱</span></div>
+          <div class="dog"><span class="dog-ear left"></span><span class="dog-ear right"></span><span class="dog-head">🐶</span></div>
+          <span class="sparkle sparkle-a">✦</span><span class="sparkle sparkle-b">✳</span><span class="sparkle sparkle-c">✦</span>
+        </div>
+        <div class="art-label label-bottom"><span class="label-paw">✿</span><span>Pequeños pacientes,<br><b>grandes historias.</b></span></div>
+        <span class="art-number">01 / 03</span>
+      </div>
+      <div class="hero-bottom"><span>UN LUGAR SEGURO PARA ELLOS</span><span class="scroll-cue">DESLIZA PARA CONOCERNOS <b>↓</b></span></div>
+    </section>
+
+    <section class="intro section-pad" id="nosotros">
+      <div class="section-kicker">01 — NUESTRA FORMA DE CUIDAR</div>
+      <div class="intro-grid">
+        <h2>Más que una consulta.<br><em>Un vínculo de confianza.</em></h2>
+        <div class="intro-text"><p>Sabemos que no es “solo una mascota”. Es quien te espera en casa, tu compañero de aventuras y parte de tu familia. Por eso cada visita empieza escuchando y termina con un plan claro para su bienestar.</p><a class="under-link" href="#equipo">Así cuidamos de ellos <span>↗</span></a></div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><strong>{{ mascotas_atendidas|default:"0" }}<span>+</span></strong><small>MASCOTAS EN NUESTRA HISTORIA</small></div>
+        <div class="stat"><strong>{{ total_veterinarios|default:"0" }}</strong><small>PROFESIONALES EN EL EQUIPO</small></div>
+        <div class="stat"><strong>{{ citas_registradas|default:"0" }}<span>+</span></strong><small>VISITAS REGISTRADAS</small></div>
+        <div class="stat stat-note"><span class="stat-star">✳</span><p>Una atención<br><b>hecha a su medida.</b></p></div>
+      </div>
+    </section>
+
+    <section class="services section-pad" id="servicios">
+      <div class="section-kicker">02 — CUIDADO PARA CADA ETAPA</div>
+      <div class="section-heading"><h2>Todo lo que necesitan,<br><em>en un mismo lugar.</em></h2><p>Prevenir, acompañar y cuidar. Estamos aquí para lo cotidiano y para lo que no puede esperar.</p></div>
+      <div class="service-grid">
+        <article class="service-card service-featured"><span class="service-icon">✳</span><span class="service-index">01 / PREVENCIÓN</span><h3>Vacunación<br>y bienestar</h3><p>Planes preventivos y seguimiento de vacunas para mantener sus defensas al día.</p><a href="#equipo" aria-label="Conoce nuestro equipo">↗</a><span class="card-decoration">✳</span></article>
+        <article class="service-card"><span class="service-icon icon-lilac">♡</span><span class="service-index">02 / CONSULTA</span><h3>Medicina<br>general</h3><p>Chequeos, diagnóstico y orientación para cuidar su salud integral.</p><a href="#equipo" aria-label="Conoce nuestro equipo">↗</a></article>
+        <article class="service-card"><span class="service-icon icon-yellow">⌕</span><span class="service-index">03 / SEGUIMIENTO</span><h3>Historias<br>que importan</h3><p>Su historia clínica nos ayuda a conocerlo y acompañar cada cambio.</p><a href="#equipo" aria-label="Conoce nuestro equipo">↗</a></article>
+        <article class="service-card"><span class="service-icon icon-blue">＋</span><span class="service-index">04 / ACOMPAÑAMIENTO</span><h3>Atención<br>cercana</h3><p>Un equipo que escucha tus dudas y te explica cada paso con claridad.</p><a href="#equipo" aria-label="Conoce nuestro equipo">↗</a></article>
+      </div>
+      <div class="services-foot"><span>¿PRIMERA VEZ CON NOSOTROS?</span><span>Nos encantará conocerlos <b>✳</b></span></div>
+    </section>
+
+    <section class="team section-pad" id="equipo">
+      <div class="section-kicker">03 — PERSONAS QUE CUIDAN</div>
+      <div class="section-heading team-heading"><h2>Manos expertas,<br><em>corazones enormes.</em></h2><p>Profesionales que combinan experiencia y empatía para cuidar a quienes más quieres.</p></div>
+      {% if veterinarios %}
+      <div class="team-grid">
+        {% for veterinario in veterinarios %}
+        <article class="team-card team-card-{{ forloop.counter }}"><div class="team-photo"><span class="team-initials">{{ veterinario.nombres|first }}{{ veterinario.apellidos|first }}</span><span class="team-paw">✳</span></div><div class="team-info"><div><h3>{{ veterinario.nombres }} {{ veterinario.apellidos }}</h3><p>{{ veterinario.especialidad }}</p></div><span class="team-arrow">↗</span></div></article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="team-empty"><span>✳</span><p>Nuestro equipo está listo para recibirte.<br><b>Pronto compartiremos más sobre quienes cuidan de ellos.</b></p></div>
+      {% endif %}
+    </section>
+
+    <section class="closing section-pad">
+      <div class="closing-spark">✳</div><span class="eyebrow">SU BIENESTAR NOS UNE</span>
+      <h2>Cada patita merece<br><em>una vida feliz.</em></h2>
+      <p>Conoce nuestros servicios y descubre cómo podemos acompañar a tu familia.</p>
+      <a class="button button-dark" href="#servicios">Explorar servicios <span aria-hidden="true">↗</span></a>
+      <span class="closing-paw paw-one">✿</span><span class="closing-paw paw-two">✳</span>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true">h</span><span>huellitas<span class="brand-dot">.</span><small>CLÍNICA VETERINARIA</small></span></a><p>Cuidado con cariño, todos los días.</p><a class="admin-link" href="{% url 'admin:index' %}">Acceso del personal ↗</a><span class="footer-copy">© {% now "Y" %} Huellitas</span></footer>
+  <script>
+    const menu = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
+    menu.addEventListener('click', () => {
+      const open = menu.getAttribute('aria-expanded') === 'true';
+      menu.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('is-open'); menu.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+</body>
+</html>

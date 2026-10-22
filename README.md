@@ -2,6 +2,8 @@
 
 Sistema académico en Django para gestionar propietarios, mascotas, historias clínicas, veterinarios, citas, vacunas y sus aplicaciones. Toda la información se administra desde Django Admin en español.
 
+El sitio público está en <http://127.0.0.1:8000/> y el panel para el personal en <http://127.0.0.1:8000/admin/>.
+
 ## Requisitos
 
 - Python 3.10 o superior.
@@ -39,6 +41,7 @@ Abre <http://127.0.0.1:8000/admin/>. El comando `generar_entregable.ps1` crea tr
 - Registro y búsqueda de propietarios con sus mascotas dentro del mismo formulario.
 - Ficha de mascota con historia clínica (1:1) y aplicaciones de vacunas (entidad intermedia).
 - Agenda de citas con veterinario, mascota, estado, fecha y motivo.
+- Portada pública de la clínica con servicios, equipo veterinario y resumen de actividad.
 - Catálogo de vacunas y seguimiento de dosis, lote y próxima aplicación.
 - Filtros, búsqueda, listados y navegación entre registros desde el panel admin.
 - Grupos de permisos `Recepcionista` y `Veterinario`, además del superusuario administrador.
