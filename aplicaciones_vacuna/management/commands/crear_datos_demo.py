@@ -1,19 +1,17 @@
 import os
-from datetime import date, datetime, time, timedelta
+from datetime import date, timedelta
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
-from django.utils import timezone
 from propietarios_core.models import Propietario
 from mascotas.models import Mascota
 from historias_clinicas.models import HistoriaClinica
 from veterinarios.models import Veterinario
-from citas.models import Cita
 from vacunas.models import Vacuna
 from aplicaciones_vacuna.models import AplicacionVacuna
 
 class Command(BaseCommand):
-    help = 'Crea tres registros de demostración por tabla y un superusuario local.'
+    help = 'Crea cuentas demo del personal y el superusuario local, sin citas ficticias.'
 
     def handle(self, *args, **options):
         props = []
@@ -33,10 +31,9 @@ class Command(BaseCommand):
         for name, species in [('Rabia','Canino'),('Triple felina','Felino'),('Parvovirus','Canino')]:
             vaccine, _ = Vacuna.objects.get_or_create(nombre=name, defaults={'especie_objetivo':species,'fabricante':'Laboratorio Demo','intervalo_meses':12,'descripcion':'Vacuna de demostración'})
             vaccines.append(vaccine)
-        now = timezone.localtime()
+        # No crear citas de ejemplo: el calendario debe reflejar solo citas
+        # registradas por el equipo o solicitadas por propietarios.
         for i in range(3):
-            instant = now + timedelta(days=i+1)
-            Cita.objects.get_or_create(mascota=pets[i], veterinario=vets[i], fecha_hora=instant.replace(hour=9+i, minute=0, second=0, microsecond=0), defaults={'motivo':['Control anual','Consulta dermatológica','Valoración general'][i], 'estado':Cita.Estado.PROGRAMADA})
             AplicacionVacuna.objects.get_or_create(mascota=pets[i], vacuna=vaccines[i], fecha=date.today()-timedelta(days=30+i), defaults={'veterinario':vets[i],'dosis':'1 ml','lote':f'DEMO-LOT-{i+1:03}','proxima_fecha':date.today()+timedelta(days=335),'observaciones':'Aplicación de demostración'})
         user = os.environ.get('DEMO_ADMIN_USER', 'admin')
         password = os.environ.get('DEMO_ADMIN_PASSWORD', 'Huellitas2026!')
