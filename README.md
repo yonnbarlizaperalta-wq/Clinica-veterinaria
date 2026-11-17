@@ -58,10 +58,12 @@ historias_clinicas/       historias clínicas
 veterinarios/             veterinarios y vínculo a su cuenta
 vacunas/                  catálogo de vacunas
 aplicaciones_vacuna/      aplicaciones de vacunas y datos demo
-templates/base.html       base Bootstrap del proceso de citas
+templates/base.html       base Bootstrap del proceso de citas, enlaza citas.css
 templates/citas/          pantallas del CRUD
-templates/portal/         portal de propietarios y personal
-static/                   estilos del sitio
+templates/portal/         portal de propietarios y personal, enlaza los estilos del portal
+static/site.css           estilos de la página principal y marca común
+static/portal.css         estilos del portal
+static/citas.css          estilos propios de las pantallas de citas
 docs/                     diagramas vigentes y referencias anteriores
 db.sqlite3                datos de prueba para ejecutar y demostrar el sistema
 manage.py                 comandos de Django

@@ -9,7 +9,7 @@
     {% for field in form %}{% if field.name == 'nombres' %}</div><h2>Tus datos</h2><div class="form-grid">{% elif field.name == 'mascota_nombre' %}</div><h2>Tu mascota</h2><div class="form-grid">{% endif %}
       <div class="field {% if field.name == 'direccion' or field.name == 'password' or field.name == 'password_confirm' %}field-wide{% endif %}">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{% for error in field.errors %}<span class="field-error">{{ error }}</span>{% endfor %}</div>
     {% endfor %}</div>
-    <button class="button button-dark form-submit" type="submit">Crear mi cuenta <span>↗</span></button>
+    <button class="button button-dark form-submit" type="submit">Crear mi cuenta </button>
     <p class="form-privacy">Tus datos se usan para gestionar la atención veterinaria de tus mascotas.</p>
   </form>
   <p class="auth-switch">¿Ya tienes cuenta? <a href="{% url 'ingresar' %}">Inicia sesión</a></p>
