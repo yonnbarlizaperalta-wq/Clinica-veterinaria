@@ -9,8 +9,8 @@ El proceso principal de este corte es la gestión de citas desde una interfaz pr
 ## Integrantes
 
 - Yonn Barliza
-- Luis José López
-- Yair Ospino
+- Luis José López (`@ljlf22`)
+- Yair Ospino (`@yirjo`)
 
 ## Tecnologías
 
