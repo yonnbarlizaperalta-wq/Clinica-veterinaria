@@ -37,6 +37,8 @@ Las tablas propias usan el prefijo `tbl_`; las columnas de llave primaria usan `
 
 - Casos de uso: [docs/diagrama_actores.png](docs/diagrama_actores.png)
 - Entidad-relación: [docs/diagrama_er.png](docs/diagrama_er.png)
+- PDF de casos de uso: [docs/diagrama_actores.pdf](docs/diagrama_actores.pdf)
+- PDF del modelo lógico: [docs/diagrama_er.pdf](docs/diagrama_er.pdf)
 
 Los diagramas editables `.drawio` están en `docs/` junto a sus imágenes PNG.
 
