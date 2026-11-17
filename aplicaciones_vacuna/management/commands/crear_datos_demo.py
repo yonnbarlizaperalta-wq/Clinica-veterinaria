@@ -31,8 +31,6 @@ class Command(BaseCommand):
         for name, species in [('Rabia','Canino'),('Triple felina','Felino'),('Parvovirus','Canino')]:
             vaccine, _ = Vacuna.objects.get_or_create(nombre=name, defaults={'especie_objetivo':species,'fabricante':'Laboratorio Demo','intervalo_meses':12,'descripcion':'Vacuna de demostración'})
             vaccines.append(vaccine)
-        # No crear citas de ejemplo: el calendario debe reflejar solo citas
-        # registradas por el equipo o solicitadas por propietarios.
         for i in range(3):
             if not AplicacionVacuna.objects.filter(mascota=pets[i], vacuna=vaccines[i]).exists():
                 AplicacionVacuna.objects.create(mascota=pets[i], vacuna=vaccines[i], veterinario=vets[i], fecha=date.today()-timedelta(days=30+i), dosis='1 ml', lote=f'DEMO-LOT-{i+1:03}', proxima_fecha=date.today()+timedelta(days=335), observaciones='Aplicación de demostración')
