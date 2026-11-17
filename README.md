@@ -1,57 +1,92 @@
 # Clínica veterinaria Huellitas
 
-Sistema web académico para gestionar una clínica veterinaria. Permite registrar propietarios y mascotas, solicitar y administrar citas, consultar historias clínicas y llevar el registro de las vacunas aplicadas. Los cambios se guardan en una base de datos SQLite local.
+## Descripción
 
-## Equipo
+Sistema web académico para una clínica veterinaria. Permite a los propietarios registrar sus mascotas, solicitar citas y consultar sus datos. Recepción organiza la agenda; cada veterinario puede consultar y atender las citas asociadas a su ficha. El administrador gestiona usuarios y registros desde Django Admin.
+
+El proceso principal de este corte es la gestión de citas desde una interfaz propia: listar, consultar, crear, editar y eliminar con confirmación.
+
+## Integrantes
 
 - Yonn Barliza
 - Luis José López
 - Yair Ospino
 
-## Funcionalidades
-
-- **Propietarios:** crean una cuenta, registran sus mascotas, solicitan citas y consultan el calendario, las historias clínicas y las vacunas de sus propias mascotas. La cuenta de demostración también permite recorrer este flujo.
-- **Recepcionista:** consulta la agenda de la clínica y agenda citas para los propietarios y sus mascotas.
-- **Veterinario:** consulta y atiende las citas asignadas a su ficha, actualiza la historia clínica y registra vacunas.
-- **Administrador:** gestiona los usuarios, los grupos de permisos y los datos de la clínica desde Django Admin. Vincula la cuenta de cada veterinario con su ficha.
-- **Calendario:** muestra las citas guardadas en la base de datos. Si no hay citas registradas para el usuario o mes seleccionado, no muestra citas.
-
-## Requisitos
+## Tecnologías
 
 - Python 3.10 o superior.
-- Windows PowerShell para usar el script de instalación incluido.
+- Django 5.2.8.
+- SQLite.
+- Bootstrap 5.3.3 por CDN en `templates/base.html`; no requiere otro paquete de Python.
 
-## Instalación y ejecución en Windows
+## Tablas principales
 
-Abre PowerShell en la carpeta del proyecto y ejecuta:
+| Tabla | Descripción |
+| --- | --- |
+| `tbl_propietario` | Datos personales y vínculo opcional con una cuenta Django. |
+| `tbl_mascota` | Paciente y propietario responsable. |
+| `tbl_historia_clinica` | Historia clínica principal de una mascota. |
+| `tbl_veterinario` | Datos profesionales y cuenta asignada del veterinario. |
+| `tbl_cita` | Fecha, motivo, estado, mascota y veterinario. |
+| `tbl_vacuna` | Catálogo de vacunas. |
+| `tbl_aplicacion_vacuna` | Vacuna aplicada, fecha, dosis, lote, mascota y veterinario. |
+
+Las tablas usan el prefijo `tbl_`; las columnas de llave primaria usan `pk_` y las foráneas `fk_`. Django también crea tablas internas para usuarios, grupos y permisos.
+
+## Diagramas
+
+- Casos de uso: [docs/diagrama_actores.png](docs/diagrama_actores.png)
+- Entidad-relación: [docs/diagrama_er.png](docs/diagrama_er.png)
+
+## Funcionalidades
+
+- **CRUD de citas:** listado en `/citas/`; alta en `/citas/nueva/`; detalle en `/citas/<id>/`; edición en `/citas/<id>/editar/`; eliminación con confirmación en `/citas/<id>/eliminar/`.
+- La cita relaciona `Mascota` y `Veterinario`; desde la mascota se identifica a su propietario. El formulario impide asignar al mismo veterinario dos citas activas en la misma fecha y hora.
+- Administrador y recepcionista pueden completar el CRUD. El veterinario consulta y edita las citas asignadas a su ficha; solo recepción o administración pueden crear o eliminar.
+- Las páginas del proceso extienden `templates/base.html`, usan la paleta común y componentes de Bootstrap. Sus plantillas están en `templates/citas/` y sus rutas en `citas/urls.py`.
+- El portal de propietarios permite solicitar citas, consultar el calendario y revisar historias clínicas y vacunas propias. El calendario muestra únicamente citas guardadas.
+- Django Admin continúa disponible en `/admin/`.
+
+## Estructura del proyecto
+
+```text
+config/                  configuración, vistas generales y rutas del sitio
+citas/                   modelo, formulario, vistas y rutas del CRUD
+propietarios_core/        propietarios
+mascotas/                 mascotas
+historias_clinicas/       historias clínicas
+veterinarios/             veterinarios y vínculo a su cuenta
+vacunas/                  catálogo de vacunas
+aplicaciones_vacuna/      aplicaciones de vacunas y datos demo
+templates/base.html       base Bootstrap del proceso de citas
+templates/citas/          pantallas del CRUD
+templates/portal/         portal de propietarios y personal
+static/                   estilos del sitio
+docs/                     diagramas vigentes y referencias anteriores
+db.sqlite3                datos de prueba para ejecutar y demostrar el sistema
+manage.py                 comandos de Django
+requirements.txt          dependencias de Python
+```
+
+## Cómo ejecutar el proyecto
+
+En Windows, abre PowerShell en la carpeta del proyecto y ejecuta:
 
 ```powershell
+git clone https://github.com/yonnbarlizaperalta-wq/Clinica-veterinaria.git
+cd Clinica-veterinaria
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\generar_entregable.ps1
 .\.venv\Scripts\python.exe manage.py runserver
 ```
 
-Abre el sitio en <http://127.0.0.1:8000/>. El script prepara las migraciones, datos de demostración y la cuenta administradora. No genera citas de demostración; estas se crean al solicitarlas desde el portal o agendarlas desde recepción.
+Abre <http://127.0.0.1:8000/>. Para el CRUD, inicia sesión desde `/acceder/` y visita `/citas/`. El panel administrativo está en `/admin/`. El script ejecuta migraciones y prepara usuarios y registros de demostración; no crea citas. Para probar el calendario y el CRUD, agenda una cita desde el propietario o recepción.
 
-Para preparar la base de datos sin el script, ejecuta:
-
-```powershell
-.\.venv\Scripts\python.exe manage.py migrate
-.\.venv\Scripts\python.exe manage.py crear_datos_demo
-.\.venv\Scripts\python.exe manage.py runserver
-```
-
-## Acceso al sistema
-
-- **Sitio público y portal:** <http://127.0.0.1:8000/>
-- **Propietarios y personal:** selecciona “Acceso clientes y equipo” o visita <http://127.0.0.1:8000/acceder/>. El sistema dirige a cada persona al panel según su cuenta.
-- **Administración:** <http://127.0.0.1:8000/admin/>. Cuenta de demostración inicial: `admin` / `Huellitas2026!`.
-
-Cuentas demostrativas para probar el sistema:
+## Usuarios de prueba
 
 | Rol | Usuario | Contraseña |
-|---|---|---|
+| --- | --- | --- |
 | Administrador | `admin` | `Huellitas2026!` |
 | Recepcionista | `recepcionista@demo.local` | `Recepcion2026!` |
 | Propietario | `propietario1@demo.local` | `Propietario2026!` |
@@ -59,32 +94,4 @@ Cuentas demostrativas para probar el sistema:
 | Veterinario: Juan Ruiz | `juan.ruiz@demo.local` | `JuanVet2026!` |
 | Veterinaria: Sofía Mora | `sofia.mora@demo.local` | `SofiaVet2026!` |
 
-La cuenta de propietario está vinculada a Laura Pérez y a su mascota Luna. Cada cuenta veterinaria está vinculada a su propia ficha; la agenda y las consultas de cada veterinario muestran solo las citas asignadas a esa ficha. Así se pueden probar las citas de Juan y Sofía por separado. El calendario no contiene citas ficticias: las citas de prueba se crean desde el portal del propietario o desde recepción. Estas credenciales son solo para la demostración local; cámbialas antes de cualquier despliegue.
-
-Para crear cuentas reales del equipo, el administrador crea el usuario en Django Admin, lo agrega al grupo `Recepcionista` o `Veterinario` y, si es veterinario, lo vincula también en la ficha correspondiente desde **Veterinarios**.
-
-## Modelo de datos
-
-El sistema organiza la información en siete entidades principales: Propietario, Mascota, Historia clínica, Veterinario, Cita, Vacuna y Aplicación de vacuna. Cada propietario puede tener varias mascotas; cada mascota tiene su historia clínica; y la aplicación de vacuna registra la relación entre mascota y vacuna junto con la fecha, dosis, lote y próxima fecha. Cada cita queda vinculada a una mascota y a un veterinario.
-
-Diagramas: [casos de uso](docs/diagrama_actores.pdf) y [entidad-relación](docs/diagrama_er.pdf).
-
-## Aplicaciones Django
-
-| Aplicación | Entidad |
-|---|---|
-| `propietarios_core` | Propietario |
-| `mascotas` | Mascota |
-| `historias_clinicas` | Historia clínica |
-| `veterinarios` | Veterinario y su cuenta asignada |
-| `citas` | Cita |
-| `vacunas` | Vacuna |
-| `aplicaciones_vacuna` | Aplicación de vacuna |
-
-## Base de datos
-
-SQLite se configura automáticamente en `db.sqlite3`. Ese archivo se crea localmente y está excluido de Git para que no se publiquen datos de propietarios. Las migraciones se encuentran en cada aplicación Django. Para inicializar una instalación nueva, ejecuta `generar_entregable.ps1`.
-
-## Solución de problemas en VS Code
-
-Si Pylance muestra `Import "django" could not be resolved`, selecciona el intérprete `.venv\Scripts\python.exe` mediante **Ctrl+Shift+P → Python: Select Interpreter**. Si el entorno aún no está instalado, ejecuta los pasos de instalación anteriores.
+La cuenta del propietario está vinculada a Laura Pérez y Luna. Cada cuenta veterinaria se vincula con su propia ficha para separar sus agendas. Las credenciales son solo para la demostración académica local.

@@ -1,12 +1,13 @@
 from django.db import models
 class HistoriaClinica(models.Model):
-    historia_id = models.BigAutoField(primary_key=True)
-    mascota = models.OneToOneField('mascotas.Mascota', on_delete=models.CASCADE, related_name='historia_clinica')
+    historia_id = models.BigAutoField(primary_key=True, db_column='pk_historia_id')
+    mascota = models.OneToOneField('mascotas.Mascota', on_delete=models.CASCADE, related_name='historia_clinica', db_column='fk_mascota_id')
     fecha_apertura = models.DateField()
     alergias = models.TextField(blank=True)
     antecedentes = models.TextField(blank=True)
     observaciones = models.TextField(blank=True)
     class Meta:
+        db_table = 'tbl_historia_clinica'
         verbose_name = 'historia clínica'
         verbose_name_plural = 'historias clínicas'
     def __str__(self):

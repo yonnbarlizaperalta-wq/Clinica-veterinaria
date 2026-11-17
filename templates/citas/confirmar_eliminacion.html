@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar cita{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-lg-7"><div class="card border-0 shadow-sm"><div class="card-body p-4 p-md-5">
+  <p class="text-uppercase small text-danger fw-semibold">Confirmación requerida</p><h1 class="h3">¿Eliminar esta cita?</h1>
+  <p class="text-secondary">{{ cita.fecha_hora|date:'d/m/Y H:i' }} · {{ cita.mascota.nombre }} · {{ cita.veterinario }}</p>
+  <p>Esta acción quitará el registro de la base de datos.</p>
+  <form method="post">{% csrf_token %}<button class="btn btn-danger" type="submit">Sí, eliminar</button> <a class="btn btn-outline-secondary" href="{% url 'citas:detalle' cita.cita_id %}">Cancelar</a></form>
+</div></div></div></div>
+{% endblock %}

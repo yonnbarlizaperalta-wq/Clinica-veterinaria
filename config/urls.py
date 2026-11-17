@@ -1,11 +1,12 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 admin.site.site_header = 'Clínica veterinaria Huellitas | Administración'
 admin.site.site_title = 'Huellitas'
 admin.site.index_title = 'Gestión de la clínica'
 urlpatterns = [
+    path('citas/', include('citas.urls')),
     path('', views.inicio, name='inicio'),
     path('crear-cuenta/', views.registrar, name='registrar'),
     path('acceder/', views.ingresar, name='ingresar'),

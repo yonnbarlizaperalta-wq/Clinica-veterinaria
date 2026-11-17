@@ -1,7 +1,7 @@
 from django.db import models
 class Mascota(models.Model):
-    mascota_id = models.BigAutoField(primary_key=True)
-    propietario = models.ForeignKey('propietarios_core.Propietario', on_delete=models.PROTECT, related_name='mascotas')
+    mascota_id = models.BigAutoField(primary_key=True, db_column='pk_mascota_id')
+    propietario = models.ForeignKey('propietarios_core.Propietario', on_delete=models.PROTECT, related_name='mascotas', db_column='fk_propietario_id')
     nombre = models.CharField(max_length=80)
     especie = models.CharField(max_length=40)
     raza = models.CharField(max_length=60, blank=True)
@@ -10,6 +10,7 @@ class Mascota(models.Model):
     peso_kg = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     activo = models.BooleanField(default=True)
     class Meta:
+        db_table = 'tbl_mascota'
         ordering = ['nombre']
         verbose_name = 'mascota'
         verbose_name_plural = 'mascotas'

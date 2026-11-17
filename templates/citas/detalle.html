@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Detalle de cita{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4"><div><a class="link-secondary text-decoration-none" href="{% url 'citas:lista' %}">← Todas las citas</a><h1 class="h2 mt-3">Detalle de la cita</h1></div><div class="d-flex gap-2">{% if perms.citas.change_cita %}<a class="btn btn-outline-secondary" href="{% url 'citas:editar' cita.cita_id %}">Editar</a>{% endif %}{% if perms.citas.delete_cita %}<a class="btn btn-outline-danger" href="{% url 'citas:eliminar' cita.cita_id %}">Eliminar</a>{% endif %}</div></div>
+<div class="card border-0 shadow-sm"><div class="card-body p-4"><dl class="row mb-0">
+  <dt class="col-sm-4">Fecha y hora</dt><dd class="col-sm-8">{{ cita.fecha_hora|date:'d/m/Y H:i' }}</dd>
+  <dt class="col-sm-4">Mascota</dt><dd class="col-sm-8">{{ cita.mascota.nombre }} · {{ cita.mascota.especie }}</dd>
+  <dt class="col-sm-4">Propietario</dt><dd class="col-sm-8">{{ cita.mascota.propietario.nombres }} {{ cita.mascota.propietario.apellidos }}</dd>
+  <dt class="col-sm-4">Veterinario</dt><dd class="col-sm-8">{{ cita.veterinario }}</dd>
+  <dt class="col-sm-4">Motivo</dt><dd class="col-sm-8">{{ cita.motivo }}</dd>
+  <dt class="col-sm-4">Estado</dt><dd class="col-sm-8">{{ cita.get_estado_display }}</dd>
+  <dt class="col-sm-4">Notas</dt><dd class="col-sm-8">{{ cita.notas|default:'Sin notas registradas.'|linebreaksbr }}</dd>
+</dl></div></div>
+{% endblock %}

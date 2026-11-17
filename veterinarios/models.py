@@ -1,7 +1,7 @@
 from django.db import models
 class Veterinario(models.Model):
-    veterinario_id = models.BigAutoField(primary_key=True)
-    usuario = models.OneToOneField('auth.User', on_delete=models.SET_NULL, null=True, blank=True, related_name='perfil_veterinario')
+    veterinario_id = models.BigAutoField(primary_key=True, db_column='pk_veterinario_id')
+    usuario = models.OneToOneField('auth.User', on_delete=models.SET_NULL, null=True, blank=True, related_name='perfil_veterinario', db_column='fk_usuario_id')
     nombres = models.CharField(max_length=80)
     apellidos = models.CharField(max_length=80)
     documento = models.CharField(max_length=20, unique=True)
@@ -11,6 +11,7 @@ class Veterinario(models.Model):
     especialidad = models.CharField(max_length=80)
     activo = models.BooleanField(default=True)
     class Meta:
+        db_table = 'tbl_veterinario'
         ordering = ['apellidos', 'nombres']
         verbose_name = 'veterinario'
         verbose_name_plural = 'veterinarios'

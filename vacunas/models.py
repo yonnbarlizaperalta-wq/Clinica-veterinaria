@@ -1,6 +1,6 @@
 from django.db import models
 class Vacuna(models.Model):
-    vacuna_id = models.BigAutoField(primary_key=True)
+    vacuna_id = models.BigAutoField(primary_key=True, db_column='pk_vacuna_id')
     nombre = models.CharField(max_length=100, unique=True)
     especie_objetivo = models.CharField(max_length=40)
     fabricante = models.CharField(max_length=100, blank=True)
@@ -8,6 +8,7 @@ class Vacuna(models.Model):
     descripcion = models.TextField(blank=True)
     activa = models.BooleanField(default=True)
     class Meta:
+        db_table = 'tbl_vacuna'
         ordering = ['nombre']
         verbose_name = 'vacuna'
         verbose_name_plural = 'vacunas'

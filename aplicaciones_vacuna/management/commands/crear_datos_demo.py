@@ -34,7 +34,8 @@ class Command(BaseCommand):
         # No crear citas de ejemplo: el calendario debe reflejar solo citas
         # registradas por el equipo o solicitadas por propietarios.
         for i in range(3):
-            AplicacionVacuna.objects.get_or_create(mascota=pets[i], vacuna=vaccines[i], fecha=date.today()-timedelta(days=30+i), defaults={'veterinario':vets[i],'dosis':'1 ml','lote':f'DEMO-LOT-{i+1:03}','proxima_fecha':date.today()+timedelta(days=335),'observaciones':'Aplicación de demostración'})
+            if not AplicacionVacuna.objects.filter(mascota=pets[i], vacuna=vaccines[i]).exists():
+                AplicacionVacuna.objects.create(mascota=pets[i], vacuna=vaccines[i], veterinario=vets[i], fecha=date.today()-timedelta(days=30+i), dosis='1 ml', lote=f'DEMO-LOT-{i+1:03}', proxima_fecha=date.today()+timedelta(days=335), observaciones='Aplicación de demostración')
         user = os.environ.get('DEMO_ADMIN_USER', 'admin')
         password = os.environ.get('DEMO_ADMIN_PASSWORD', 'Huellitas2026!')
         User = get_user_model()
@@ -55,7 +56,7 @@ class Command(BaseCommand):
             'Recepcionista': {
                 'propietarios_core': ('view_propietario','add_propietario','change_propietario'),
                 'mascotas': ('view_mascota','add_mascota','change_mascota'),
-                'citas': ('view_cita','add_cita','change_cita'),
+                'citas': ('view_cita','add_cita','change_cita','delete_cita'),
                 'veterinarios': ('view_veterinario',),
             },
             'Veterinario': {

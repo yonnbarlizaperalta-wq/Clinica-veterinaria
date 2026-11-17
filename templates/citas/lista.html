@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Citas{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div><p class="text-uppercase small text-secondary mb-1">Proceso principal</p><h1 class="h2 mb-1">Gestión de citas</h1><p class="text-secondary mb-0">Cada cita relaciona una mascota con un veterinario.</p></div>
+  {% if perms.citas.add_cita %}<a class="btn btn-success" href="{% url 'citas:crear' %}">Agendar cita</a>{% endif %}
+</div>
+<div class="card border-0 shadow-sm"><div class="table-responsive">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-light"><tr><th>Fecha y hora</th><th>Mascota / propietario</th><th>Veterinario</th><th>Motivo</th><th>Estado</th><th>Acciones</th></tr></thead>
+    <tbody>
+    {% for cita in citas %}
+      <tr>
+        <td>{{ cita.fecha_hora|date:'d/m/Y H:i' }}</td>
+        <td><strong>{{ cita.mascota.nombre }}</strong><br><span class="text-secondary small">{{ cita.mascota.propietario.nombres }} {{ cita.mascota.propietario.apellidos }}</span></td>
+        <td>{{ cita.veterinario }}</td><td>{{ cita.motivo }}</td><td>{{ cita.get_estado_display }}</td>
+        <td class="text-nowrap"><a class="btn btn-sm btn-outline-primary" href="{% url 'citas:detalle' cita.cita_id %}">Ver</a> {% if perms.citas.change_cita %}<a class="btn btn-sm btn-outline-secondary" href="{% url 'citas:editar' cita.cita_id %}">Editar</a>{% endif %} {% if perms.citas.delete_cita %}<a class="btn btn-sm btn-outline-danger" href="{% url 'citas:eliminar' cita.cita_id %}">Eliminar</a>{% endif %}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6" class="text-center py-5 text-secondary">No hay citas registradas todavía.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}
