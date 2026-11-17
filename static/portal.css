@@ -475,6 +475,27 @@
 .appointment-detail {
   flex:1
 }
+.appointment-actions {
+  display:flex;
+  gap:8px;
+  margin-left:auto
+}
+.appointment-actions a,.cancel-link {
+  display:inline-block;
+  border:1px solid #dfe2d8;
+  padding:8px 10px;
+  font-size:9px;
+  font-weight:700;
+  color:#425e32
+}
+.appointment-actions .appointment-cancel {
+  color:#9c3c2d
+}
+.cancel-link {
+  margin-left:8px;
+  border:0;
+  color:#68726e
+}
 .appointment-detail>b,.appointment-detail>small {
   display:block
 }
@@ -951,7 +972,15 @@
   }
   .appointment-row {
     gap:9px;
-    padding:11px 8px
+    padding:11px 8px;
+    flex-wrap:wrap
+  }
+  .appointment-detail {
+    min-width:180px
+  }
+  .appointment-actions {
+    width:100%;
+    margin-left:54px
   }
   .appointment-detail>b {
     font-size:9px

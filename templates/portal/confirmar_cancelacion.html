@@ -1,0 +1,20 @@
+{% extends 'portal/base.html' %}
+{% block title %}Cancelar cita{% endblock %}
+{% block content %}
+<section class="form-page form-page-narrow">
+  <a class="back-link" href="{% url 'mi_cuenta' %}">Volver a mi cuenta</a>
+  <div class="page-heading">
+    <span class="portal-eyebrow">CONFIRMAR CANCELACIÓN</span>
+    <h1>Cancelar cita</h1>
+    <p>{{ cita.mascota.nombre }} - {{ cita.veterinario }} - {{ cita.fecha_hora|date:'d/m/Y H:i' }}</p>
+  </div>
+  <div class="form-panel">
+    <p>La cita se marcará como cancelada y dejará de aparecer como cita activa.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button class="button button-dark form-submit" type="submit">Sí, cancelar cita</button>
+      <a class="cancel-link" href="{% url 'mi_cuenta' %}">Volver sin cambios</a>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -198,6 +198,32 @@ class NuevaCitaForm(forms.Form):
         return fecha
 
 
+class ReprogramarCitaForm(forms.Form):
+    fecha = forms.DateField(
+        label='Nueva fecha',
+        widget=forms.DateInput(attrs={
+            'type': 'date',
+            'min': timezone.localdate().isoformat(),
+        }),
+    )
+    hora = forms.TimeField(
+        label='Nueva hora',
+        widget=forms.TimeInput(attrs={
+            'type': 'time',
+            'min': '08:00',
+            'max': '18:00',
+        }),
+    )
+
+    def clean_fecha(self):
+        fecha = self.cleaned_data['fecha']
+
+        if fecha < timezone.localdate():
+            raise forms.ValidationError('Elige hoy o una fecha futura.')
+
+        return fecha
+
+
 class ActualizarCitaForm(forms.ModelForm):
     class Meta:
         model = Cita

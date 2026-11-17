@@ -1,0 +1,27 @@
+{% extends 'portal/base.html' %}
+{% block title %}Reprogramar cita{% endblock %}
+{% block content %}
+<section class="form-page form-page-narrow">
+  <a class="back-link" href="{% url 'mi_cuenta' %}">Volver a mi cuenta</a>
+  <div class="page-heading">
+    <span class="portal-eyebrow">CAMBIO DE HORARIO</span>
+    <h1>Reprogramar cita</h1>
+    <p>{{ cita.mascota.nombre }} - {{ cita.veterinario }} - {{ cita.fecha_hora|date:'d/m/Y H:i' }}</p>
+  </div>
+  <form method="post" class="portal-form form-panel">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% for error in field.errors %}
+          <span class="field-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <p class="form-privacy">Se conservarán la mascota, el veterinario y el motivo de la cita.</p>
+    <button class="button button-dark form-submit" type="submit">Guardar nuevo horario</button>
+    <a class="cancel-link" href="{% url 'mi_cuenta' %}">Volver sin cambios</a>
+  </form>
+</section>
+{% endblock %}

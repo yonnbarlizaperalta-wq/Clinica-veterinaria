@@ -43,6 +43,7 @@ Las tablas usan el prefijo `tbl_`; las columnas de llave primaria usan `pk_` y l
 - **CRUD de citas:** listado en `/citas/`; alta en `/citas/nueva/`; detalle en `/citas/<id>/`; edición en `/citas/<id>/editar/`; eliminación con confirmación en `/citas/<id>/eliminar/`.
 - La cita relaciona `Mascota` y `Veterinario`; desde la mascota se identifica a su propietario. El formulario impide asignar al mismo veterinario dos citas activas en la misma fecha y hora.
 - Administrador y recepcionista pueden completar el CRUD. El veterinario consulta y edita las citas asignadas a su ficha; solo recepción o administración pueden crear o eliminar.
+- En su cuenta, cada propietario puede reprogramar o cancelar sus citas futuras. Al cancelar, la cita conserva su registro y cambia a estado cancelado.
 - Las páginas del proceso extienden `templates/base.html`, usan la paleta común y componentes de Bootstrap. Sus plantillas están en `templates/citas/` y sus rutas en `citas/urls.py`.
 - El portal de propietarios permite solicitar citas, consultar el calendario y revisar historias clínicas y vacunas propias. El calendario muestra únicamente citas guardadas.
 - Django Admin continúa disponible en `/admin/`.

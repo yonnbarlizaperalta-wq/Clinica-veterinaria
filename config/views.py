@@ -22,6 +22,7 @@ from .forms import (
     HistoriaClinicaForm,
     NuevaCitaForm,
     NuevaMascotaForm,
+    ReprogramarCitaForm,
     RegistroPropietarioForm,
 )
 
@@ -187,6 +188,7 @@ def mi_cuenta(request):
         'mascotas': mascotas,
         'citas': citas,
         'vacunas': vacunas,
+        'ahora': timezone.now(),
     }
     return render(request, 'portal/mi_cuenta.html', datos)
 
@@ -256,6 +258,83 @@ def nueva_cita(request):
                 return redirect('mi_cuenta')
 
     return render(request, 'portal/nueva_cita.html', {'form': form})
+
+
+@login_required
+def reprogramar_cita(request, cita_id):
+    propietario = propietario_actual(request)
+
+    if propietario is None or es_personal(request.user):
+        raise PermissionDenied
+
+    cita = get_object_or_404(
+        Cita.objects.filter(mascota__propietario=propietario),
+        cita_id=cita_id,
+        estado=Cita.Estado.PROGRAMADA,
+    )
+
+    if cita.fecha_hora <= timezone.now():
+        messages.error(request, 'Solo puedes reprogramar citas futuras.')
+        return redirect('mi_cuenta')
+
+    form = ReprogramarCitaForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        datos = form.cleaned_data
+        nueva_fecha = datetime.combine(datos['fecha'], datos['hora'])
+        nueva_fecha = timezone.make_aware(nueva_fecha)
+
+        if nueva_fecha <= timezone.now():
+            form.add_error('hora', 'Elige una hora futura.')
+        else:
+            horario_ocupado = Cita.objects.filter(
+                veterinario=cita.veterinario,
+                fecha_hora=nueva_fecha,
+            ).exclude(
+                cita_id=cita.cita_id,
+            ).exclude(
+                estado=Cita.Estado.CANCELADA,
+            ).exists()
+
+            if horario_ocupado:
+                form.add_error(
+                    'hora',
+                    'El veterinario ya tiene una cita en ese horario. Elige otro.',
+                )
+            else:
+                cita.fecha_hora = nueva_fecha
+                cita.save(update_fields=['fecha_hora'])
+                messages.success(request, 'La cita quedó reprogramada.')
+                return redirect('mi_cuenta')
+
+    datos_pagina = {'form': form, 'cita': cita}
+    return render(request, 'portal/reprogramar_cita.html', datos_pagina)
+
+
+@login_required
+def cancelar_cita(request, cita_id):
+    propietario = propietario_actual(request)
+
+    if propietario is None or es_personal(request.user):
+        raise PermissionDenied
+
+    cita = get_object_or_404(
+        Cita.objects.filter(mascota__propietario=propietario),
+        cita_id=cita_id,
+        estado=Cita.Estado.PROGRAMADA,
+    )
+
+    if cita.fecha_hora <= timezone.now():
+        messages.error(request, 'Solo puedes cancelar citas futuras.')
+        return redirect('mi_cuenta')
+
+    if request.method == 'POST':
+        cita.estado = Cita.Estado.CANCELADA
+        cita.save(update_fields=['estado'])
+        messages.success(request, 'La cita quedó cancelada.')
+        return redirect('mi_cuenta')
+
+    return render(request, 'portal/confirmar_cancelacion.html', {'cita': cita})
 
 
 @login_required
