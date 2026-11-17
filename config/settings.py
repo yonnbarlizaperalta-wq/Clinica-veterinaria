@@ -7,8 +7,13 @@ LOGIN_URL = '/acceder/'
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
     'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles',
-    'propietarios_core', 'mascotas', 'historias_clinicas', 'veterinarios', 'citas',
-    'vacunas', 'aplicaciones_vacuna',
+    'apps.propietarios_core.apps.PropietariosCoreConfig',
+    'apps.mascotas.apps.MascotasConfig',
+    'apps.historias_clinicas.apps.HistoriasClinicasConfig',
+    'apps.veterinarios.apps.VeterinariosConfig',
+    'apps.citas.apps.CitasConfig',
+    'apps.vacunas.apps.VacunasConfig',
+    'apps.aplicaciones_vacuna.apps.AplicacionesVacunaConfig',
 ]
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware', 'django.contrib.sessions.middleware.SessionMiddleware', 'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware', 'django.middleware.clickjacking.XFrameOptionsMiddleware']
 ROOT_URLCONF = 'config.urls'

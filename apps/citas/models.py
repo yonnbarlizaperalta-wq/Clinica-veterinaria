@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Cita(models.Model):
@@ -39,5 +40,5 @@ class Cita(models.Model):
         verbose_name_plural = 'citas'
 
     def __str__(self):
-        fecha = self.fecha_hora.strftime('%d/%m/%Y %H:%M')
+        fecha = timezone.localtime(self.fecha_hora).strftime('%d/%m/%Y %H:%M')
         return f'{self.mascota} — {fecha}'

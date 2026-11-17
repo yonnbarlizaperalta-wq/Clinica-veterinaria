@@ -1,7 +1,8 @@
 from django import forms
+from django.utils import timezone
 
-from mascotas.models import Mascota
-from veterinarios.models import Veterinario
+from apps.mascotas.models import Mascota
+from apps.veterinarios.models import Veterinario
 from .models import Cita
 
 
@@ -45,6 +46,10 @@ class CitaForm(forms.ModelForm):
         datos = super().clean()
         veterinario = datos.get('veterinario')
         fecha_hora = datos.get('fecha_hora')
+
+        if fecha_hora and (not self.instance.pk or fecha_hora != self.instance.fecha_hora):
+            if fecha_hora <= timezone.now():
+                self.add_error('fecha_hora', 'La cita debe programarse para una fecha y hora futuras.')
 
         if veterinario and fecha_hora:
             citas_ocupadas = Cita.objects.filter(

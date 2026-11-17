@@ -1,8 +1,7 @@
-{% extends 'portal/base.html' %}
+{% extends 'base.html' %}
 {% block title %}Iniciar sesión{% endblock %}
 {% block content %}
 <section class="auth-layout">
-  <div class="auth-art"><span class="auth-art-mark">H</span><p>Todo lo que necesitas<br>para cuidar de <em>quien más quieres.</em></p></div>
   <div class="auth-card"><span class="portal-eyebrow">PROPIETARIOS Y EQUIPO</span><h1>Qué bueno<br><em>verte de nuevo.</em></h1><p class="muted">Propietarios ingresan a su cuenta. Recepción, veterinaria y administración usan aquí su cuenta del equipo.</p>
     <form method="post" class="portal-form">{% csrf_token %}
       {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}

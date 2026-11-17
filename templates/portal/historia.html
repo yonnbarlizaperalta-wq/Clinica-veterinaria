@@ -1,4 +1,4 @@
-{% extends 'portal/base.html' %}
+{% extends 'base.html' %}
 {% block title %}Historia de {{ mascota.nombre }}{% endblock %}
 {% block content %}
 <section class="dashboard-page"><a class="back-link" href="{% url 'mi_cuenta' %}"> Volver a mi cuenta</a><div class="dashboard-welcome history-welcome"><div><span class="portal-eyebrow">HISTORIA CLÍNICA</span><h1>{{ mascota.nombre }} </h1><p>{{ mascota.especie }}{% if mascota.raza %} · {{ mascota.raza }}{% endif %} · Propietario/a: {{ mascota.propietario.nombres }} {{ mascota.propietario.apellidos }}</p></div><span class="history-badge">Registro médico</span></div>

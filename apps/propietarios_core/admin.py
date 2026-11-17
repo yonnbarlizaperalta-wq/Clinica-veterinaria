@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Propietario
-from mascotas.models import Mascota
+from apps.mascotas.models import Mascota
 
 class MascotaInline(admin.TabularInline):
     model = Mascota

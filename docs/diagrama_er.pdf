@@ -1,0 +1,206 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1900 1500] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 8562 >>
+stream
+0 g BT /F2 26 Tf 50 1450 Td (MODELO L”GICO DE DATOS) Tj ET
+0 g BT /F1 14 Tf 50 1422 Td (PK = llave primaria    FK = llave for·nea    UNIQUE = valor unico) Tj ET
+0 g BT /F1 13 Tf 50 1398 Td (Cada lÌnea une dos tablas; la etiqueta indica su cardinalidad.) Tj ET
+0 0 0 RG 1.5 w 420 1030 m 500 1030 l S
+1 w 1 1 1 rg 0 0 0 RG 424.0 1054 72 22 re B
+0 g BT /F2 11 Tf 445.15 1060 Td (1 : N) Tj ET
+0 0 0 RG 1.5 w 860 1030 m 940 1030 l S
+1 w 1 1 1 rg 0 0 0 RG 864.0 1054 72 22 re B
+0 g BT /F2 11 Tf 876.24 1060 Td (1 : 0..1) Tj ET
+0 0 0 RG 1.5 w 700 900 m 700 600 l S
+1 w 1 1 1 rg 0 0 0 RG 699.0 749 72 22 re B
+0 g BT /F2 11 Tf 720.15 755 Td (1 : N) Tj ET
+0 0 0 RG 1.5 w 820 900 m 900 830 l 900 680 l 1100 680 l 1100 600 l S
+1 w 1 1 1 rg 0 0 0 RG 894.0 699 72 22 re B
+0 g BT /F2 11 Tf 915.15 705 Td (1 : N) Tj ET
+0 0 0 RG 1.5 w 1400 1045 m 1370 850 l 1370 720 l 880 720 l 880 575 l S
+1 w 1 1 1 rg 0 0 0 RG 1094.0 739 72 22 re B
+0 g BT /F2 11 Tf 1115.15 745 Td (1 : N) Tj ET
+0 0 0 RG 1.5 w 1400 945 m 1420 800 l 1420 550 l 1390 530 l S
+1 w 1 1 1 rg 0 0 0 RG 1404.0 679 72 22 re B
+0 g BT /F2 11 Tf 1425.15 685 Td (1 : N) Tj ET
+0 0 0 RG 1.5 w 1480 450 m 1390 450 l S
+1 w 1 1 1 rg 0 0 0 RG 1399.0 469 72 22 re B
+0 g BT /F2 11 Tf 1420.15 475 Td (1 : N) Tj ET
+0 0 0 RG 1.5 w 810 1250 m 810 1205 l 240 1205 l 240 1150 l S
+1 w 1 1 1 rg 0 0 0 RG 474.5 1216 91 22 re B
+0 g BT /F2 11 Tf 487.33 1222 Td (0..1 : 0..1) Tj ET
+0 0 0 RG 1.5 w 1090 1250 m 1090 1185 l 1600 1185 l 1600 1150 l S
+1 w 1 1 1 rg 0 0 0 RG 1279.5 1197 91 22 re B
+0 g BT /F2 11 Tf 1292.33 1203 Td (0..1 : 0..1) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 60 924 360 226 re B
+0 0 0 RG 1 w 60 1116 m 420 1116 l S
+0 g BT /F2 16 Tf 70 1127 Td (tbl_propietario) Tj ET
+0 g BT /F2 13 Tf 70 1096 Td (PK pk_propietario_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 60 1088 m 420 1088 l S
+0 g BT /F2 13 Tf 70 1072 Td (FK fk_usuario_id BIGINT NULL UNIQUE) Tj ET
+0 0 0 RG 0.5 w 60 1064 m 420 1064 l S
+0 g BT /F1 13 Tf 70 1048 Td (nombres VARCHAR\(80\)) Tj ET
+0 0 0 RG 0.5 w 60 1040 m 420 1040 l S
+0 g BT /F1 13 Tf 70 1024 Td (apellidos VARCHAR\(80\)) Tj ET
+0 0 0 RG 0.5 w 60 1016 m 420 1016 l S
+0 g BT /F1 13 Tf 70 1000 Td (documento VARCHAR\(20\) UNIQUE) Tj ET
+0 0 0 RG 0.5 w 60 992 m 420 992 l S
+0 g BT /F1 13 Tf 70 976 Td (telefono VARCHAR\(20\)) Tj ET
+0 0 0 RG 0.5 w 60 968 m 420 968 l S
+0 g BT /F1 13 Tf 70 952 Td (correo VARCHAR\(254\)) Tj ET
+0 0 0 RG 0.5 w 60 944 m 420 944 l S
+0 g BT /F1 13 Tf 70 928 Td (direccion VARCHAR\(160\)) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 500 900 360 250 re B
+0 0 0 RG 1 w 500 1116 m 860 1116 l S
+0 g BT /F2 16 Tf 510 1127 Td (tbl_mascota) Tj ET
+0 g BT /F2 13 Tf 510 1096 Td (PK pk_mascota_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 500 1088 m 860 1088 l S
+0 g BT /F2 13 Tf 510 1072 Td (FK fk_propietario_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 500 1064 m 860 1064 l S
+0 g BT /F1 13 Tf 510 1048 Td (nombre VARCHAR\(80\)) Tj ET
+0 0 0 RG 0.5 w 500 1040 m 860 1040 l S
+0 g BT /F1 13 Tf 510 1024 Td (especie VARCHAR\(40\)) Tj ET
+0 0 0 RG 0.5 w 500 1016 m 860 1016 l S
+0 g BT /F1 13 Tf 510 1000 Td (raza VARCHAR\(60\)) Tj ET
+0 0 0 RG 0.5 w 500 992 m 860 992 l S
+0 g BT /F1 13 Tf 510 976 Td (sexo VARCHAR\(10\)) Tj ET
+0 0 0 RG 0.5 w 500 968 m 860 968 l S
+0 g BT /F1 13 Tf 510 952 Td (fecha_nacimiento DATE NULL) Tj ET
+0 0 0 RG 0.5 w 500 944 m 860 944 l S
+0 g BT /F1 13 Tf 510 928 Td (peso_kg DECIMAL\(6,2\) NULL) Tj ET
+0 0 0 RG 0.5 w 500 920 m 860 920 l S
+0 g BT /F1 13 Tf 510 904 Td (activo BOOLEAN) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 940 972 360 178 re B
+0 0 0 RG 1 w 940 1116 m 1300 1116 l S
+0 g BT /F2 16 Tf 950 1127 Td (tbl_historia_clinica) Tj ET
+0 g BT /F2 13 Tf 950 1096 Td (PK pk_historia_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 940 1088 m 1300 1088 l S
+0 g BT /F2 13 Tf 950 1072 Td (FK fk_mascota_id BIGINT UNIQUE) Tj ET
+0 0 0 RG 0.5 w 940 1064 m 1300 1064 l S
+0 g BT /F1 13 Tf 950 1048 Td (fecha_apertura DATE) Tj ET
+0 0 0 RG 0.5 w 940 1040 m 1300 1040 l S
+0 g BT /F1 13 Tf 950 1024 Td (alergias TEXT) Tj ET
+0 0 0 RG 0.5 w 940 1016 m 1300 1016 l S
+0 g BT /F1 13 Tf 950 1000 Td (antecedentes TEXT) Tj ET
+0 0 0 RG 0.5 w 940 992 m 1300 992 l S
+0 g BT /F1 13 Tf 950 976 Td (observaciones TEXT) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 1400 876 400 274 re B
+0 0 0 RG 1 w 1400 1116 m 1800 1116 l S
+0 g BT /F2 16 Tf 1410 1127 Td (tbl_veterinario) Tj ET
+0 g BT /F2 13 Tf 1410 1096 Td (PK pk_veterinario_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 1400 1088 m 1800 1088 l S
+0 g BT /F2 13 Tf 1410 1072 Td (FK fk_usuario_id BIGINT NULL UNIQUE) Tj ET
+0 0 0 RG 0.5 w 1400 1064 m 1800 1064 l S
+0 g BT /F1 13 Tf 1410 1048 Td (nombres VARCHAR\(80\)) Tj ET
+0 0 0 RG 0.5 w 1400 1040 m 1800 1040 l S
+0 g BT /F1 13 Tf 1410 1024 Td (apellidos VARCHAR\(80\)) Tj ET
+0 0 0 RG 0.5 w 1400 1016 m 1800 1016 l S
+0 g BT /F1 13 Tf 1410 1000 Td (documento VARCHAR\(20\) UNIQUE) Tj ET
+0 0 0 RG 0.5 w 1400 992 m 1800 992 l S
+0 g BT /F1 13 Tf 1410 976 Td (tarjeta_profesional VARCHAR\(40\) UNIQUE) Tj ET
+0 0 0 RG 0.5 w 1400 968 m 1800 968 l S
+0 g BT /F1 13 Tf 1410 952 Td (telefono VARCHAR\(20\)) Tj ET
+0 0 0 RG 0.5 w 1400 944 m 1800 944 l S
+0 g BT /F1 13 Tf 1410 928 Td (correo VARCHAR\(254\) UNIQUE) Tj ET
+0 0 0 RG 0.5 w 1400 920 m 1800 920 l S
+0 g BT /F1 13 Tf 1410 904 Td (especialidad VARCHAR\(80\)) Tj ET
+0 0 0 RG 0.5 w 1400 896 m 1800 896 l S
+0 g BT /F1 13 Tf 1410 880 Td (activo BOOLEAN) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 760 1250 380 130 re B
+0 0 0 RG 1 w 760 1346 m 1140 1346 l S
+0 g BT /F2 16 Tf 770 1357 Td (auth_user \(Django\)) Tj ET
+0 g BT /F2 13 Tf 770 1326 Td (PK id BIGINT) Tj ET
+0 0 0 RG 0.5 w 760 1318 m 1140 1318 l S
+0 g BT /F1 13 Tf 770 1302 Td (username VARCHAR\(150\)) Tj ET
+0 0 0 RG 0.5 w 760 1294 m 1140 1294 l S
+0 g BT /F1 13 Tf 770 1278 Td (email VARCHAR\(254\)) Tj ET
+0 0 0 RG 0.5 w 760 1270 m 1140 1270 l S
+0 g BT /F1 13 Tf 770 1254 Td (Se muestran los campos usados) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 470 398 410 202 re B
+0 0 0 RG 1 w 470 566 m 880 566 l S
+0 g BT /F2 16 Tf 480 577 Td (tbl_cita) Tj ET
+0 g BT /F2 13 Tf 480 546 Td (PK pk_cita_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 470 538 m 880 538 l S
+0 g BT /F2 13 Tf 480 522 Td (FK fk_mascota_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 470 514 m 880 514 l S
+0 g BT /F2 13 Tf 480 498 Td (FK fk_veterinario_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 470 490 m 880 490 l S
+0 g BT /F1 13 Tf 480 474 Td (fecha_hora DATETIME) Tj ET
+0 0 0 RG 0.5 w 470 466 m 880 466 l S
+0 g BT /F1 13 Tf 480 450 Td (motivo VARCHAR\(180\)) Tj ET
+0 0 0 RG 0.5 w 470 442 m 880 442 l S
+0 g BT /F1 13 Tf 480 426 Td (estado VARCHAR\(12\)) Tj ET
+0 0 0 RG 0.5 w 470 418 m 880 418 l S
+0 g BT /F1 13 Tf 480 402 Td (notas TEXT) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 960 326 430 274 re B
+0 0 0 RG 1 w 960 566 m 1390 566 l S
+0 g BT /F2 16 Tf 970 577 Td (tbl_aplicacion_vacuna) Tj ET
+0 g BT /F2 13 Tf 970 546 Td (PK pk_aplicacion_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 960 538 m 1390 538 l S
+0 g BT /F2 13 Tf 970 522 Td (FK fk_mascota_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 960 514 m 1390 514 l S
+0 g BT /F2 13 Tf 970 498 Td (FK fk_vacuna_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 960 490 m 1390 490 l S
+0 g BT /F2 13 Tf 970 474 Td (FK fk_veterinario_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 960 466 m 1390 466 l S
+0 g BT /F1 13 Tf 970 450 Td (fecha DATE) Tj ET
+0 0 0 RG 0.5 w 960 442 m 1390 442 l S
+0 g BT /F1 13 Tf 970 426 Td (dosis VARCHAR\(40\)) Tj ET
+0 0 0 RG 0.5 w 960 418 m 1390 418 l S
+0 g BT /F1 13 Tf 970 402 Td (lote VARCHAR\(60\)) Tj ET
+0 0 0 RG 0.5 w 960 394 m 1390 394 l S
+0 g BT /F1 13 Tf 970 378 Td (proxima_fecha DATE NULL) Tj ET
+0 0 0 RG 0.5 w 960 370 m 1390 370 l S
+0 g BT /F1 13 Tf 970 354 Td (observaciones TEXT) Tj ET
+0 0 0 RG 0.5 w 960 346 m 1390 346 l S
+0 g BT /F1 13 Tf 970 330 Td (UNIQUE \(mascota, vacuna, fecha\)) Tj ET
+1 w 1 1 1 rg 0 0 0 RG 1480 398 360 202 re B
+0 0 0 RG 1 w 1480 566 m 1840 566 l S
+0 g BT /F2 16 Tf 1490 577 Td (tbl_vacuna) Tj ET
+0 g BT /F2 13 Tf 1490 546 Td (PK pk_vacuna_id BIGINT) Tj ET
+0 0 0 RG 0.5 w 1480 538 m 1840 538 l S
+0 g BT /F1 13 Tf 1490 522 Td (nombre VARCHAR\(100\) UNIQUE) Tj ET
+0 0 0 RG 0.5 w 1480 514 m 1840 514 l S
+0 g BT /F1 13 Tf 1490 498 Td (especie_objetivo VARCHAR\(40\)) Tj ET
+0 0 0 RG 0.5 w 1480 490 m 1840 490 l S
+0 g BT /F1 13 Tf 1490 474 Td (fabricante VARCHAR\(100\)) Tj ET
+0 0 0 RG 0.5 w 1480 466 m 1840 466 l S
+0 g BT /F1 13 Tf 1490 450 Td (intervalo_meses SMALLINT) Tj ET
+0 0 0 RG 0.5 w 1480 442 m 1840 442 l S
+0 g BT /F1 13 Tf 1490 426 Td (descripcion TEXT) Tj ET
+0 0 0 RG 0.5 w 1480 418 m 1840 418 l S
+0 g BT /F1 13 Tf 1490 402 Td (activa BOOLEAN) Tj ET
+0 g BT /F1 13 Tf 50 65 Td (Mascota y Vacuna tienen una relaciÛn N:M mediante tbl_aplicacion_vacuna.) Tj ET
+0 g BT /F1 13 Tf 50 42 Td (La tabla intermedia guarda fecha, dosis y el veterinario que aplico la vacuna.) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000259 00000 n 
+0000000356 00000 n 
+0000000458 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+9072
+%%EOF

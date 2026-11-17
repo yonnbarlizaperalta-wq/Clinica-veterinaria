@@ -3,7 +3,9 @@ venv/
 __pycache__/
 *.py[cod]
 *.sqlite3-journal
-db.sqlite3
+Clinica-veterinaria/
+outputs/
+work/
 .env
 .idea/
 .vscode/*

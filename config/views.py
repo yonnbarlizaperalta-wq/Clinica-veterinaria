@@ -10,12 +10,12 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
-from aplicaciones_vacuna.models import AplicacionVacuna
-from citas.models import Cita
-from historias_clinicas.models import HistoriaClinica
-from mascotas.models import Mascota
-from propietarios_core.models import Propietario
-from veterinarios.models import Veterinario
+from apps.aplicaciones_vacuna.models import AplicacionVacuna
+from apps.citas.models import Cita
+from apps.historias_clinicas.models import HistoriaClinica
+from apps.mascotas.models import Mascota
+from apps.propietarios_core.models import Propietario
+from apps.veterinarios.models import Veterinario
 from .forms import (
     ActualizarCitaForm,
     AplicacionVacunaForm,
@@ -262,22 +262,26 @@ def nueva_cita(request):
 
 @login_required
 def reprogramar_cita(request, cita_id):
-    propietario = propietario_actual(request)
+    personal = es_administrador(request.user) or pertenece_rol(request.user, 'Recepcionista')
+    propietario = None if personal else propietario_actual(request)
 
-    if propietario is None or es_personal(request.user):
+    if propietario is None and not personal:
         raise PermissionDenied
 
-    cita = get_object_or_404(
-        Cita.objects.filter(mascota__propietario=propietario),
-        cita_id=cita_id,
-        estado=Cita.Estado.PROGRAMADA,
-    )
+    citas = Cita.objects.filter(estado=Cita.Estado.PROGRAMADA)
+    if propietario:
+        citas = citas.filter(mascota__propietario=propietario)
+    cita = get_object_or_404(citas, cita_id=cita_id)
 
     if cita.fecha_hora <= timezone.now():
-        messages.error(request, 'Solo puedes reprogramar citas futuras.')
-        return redirect('mi_cuenta')
+        messages.error(request, 'Solo se pueden reprogramar citas futuras.')
+        return redirect('agenda_personal' if personal else 'mi_cuenta')
 
-    form = ReprogramarCitaForm(request.POST or None)
+    fecha_hora_actual = timezone.localtime(cita.fecha_hora)
+    form = ReprogramarCitaForm(
+        request.POST or None,
+        initial={'fecha':fecha_hora_actual.date(),'hora':fecha_hora_actual.time().replace(tzinfo=None)},
+    )
 
     if request.method == 'POST' and form.is_valid():
         datos = form.cleaned_data
@@ -305,7 +309,7 @@ def reprogramar_cita(request, cita_id):
                 cita.fecha_hora = nueva_fecha
                 cita.save(update_fields=['fecha_hora'])
                 messages.success(request, 'La cita quedó reprogramada.')
-                return redirect('mi_cuenta')
+                return redirect('agenda_personal' if personal else 'mi_cuenta')
 
     datos_pagina = {'form': form, 'cita': cita}
     return render(request, 'portal/reprogramar_cita.html', datos_pagina)
@@ -313,26 +317,26 @@ def reprogramar_cita(request, cita_id):
 
 @login_required
 def cancelar_cita(request, cita_id):
-    propietario = propietario_actual(request)
+    personal = es_administrador(request.user) or pertenece_rol(request.user, 'Recepcionista')
+    propietario = None if personal else propietario_actual(request)
 
-    if propietario is None or es_personal(request.user):
+    if propietario is None and not personal:
         raise PermissionDenied
 
-    cita = get_object_or_404(
-        Cita.objects.filter(mascota__propietario=propietario),
-        cita_id=cita_id,
-        estado=Cita.Estado.PROGRAMADA,
-    )
+    citas = Cita.objects.filter(estado=Cita.Estado.PROGRAMADA)
+    if propietario:
+        citas = citas.filter(mascota__propietario=propietario)
+    cita = get_object_or_404(citas, cita_id=cita_id)
 
     if cita.fecha_hora <= timezone.now():
-        messages.error(request, 'Solo puedes cancelar citas futuras.')
-        return redirect('mi_cuenta')
+        messages.error(request, 'Solo se pueden cancelar citas futuras.')
+        return redirect('agenda_personal' if personal else 'mi_cuenta')
 
     if request.method == 'POST':
         cita.estado = Cita.Estado.CANCELADA
         cita.save(update_fields=['estado'])
         messages.success(request, 'La cita quedó cancelada.')
-        return redirect('mi_cuenta')
+        return redirect('agenda_personal' if personal else 'mi_cuenta')
 
     return render(request, 'portal/confirmar_cancelacion.html', {'cita': cita})
 
@@ -512,6 +516,8 @@ def agenda_personal(request):
 
     citas = Cita.objects.filter(
         fecha_hora__date__gte=hoy,
+    ).exclude(
+        estado=Cita.Estado.CANCELADA,
     ).select_related(
         'mascota', 'mascota__propietario', 'veterinario',
     ).order_by('fecha_hora')

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Mascota
-from aplicaciones_vacuna.admin import AplicacionVacunaInline
-from historias_clinicas.models import HistoriaClinica
+from apps.aplicaciones_vacuna.admin import AplicacionVacunaInline
+from apps.historias_clinicas.models import HistoriaClinica
 
 class HistoriaClinicaInline(admin.StackedInline):
     model = HistoriaClinica

@@ -2,13 +2,13 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
-from aplicaciones_vacuna.models import AplicacionVacuna
-from citas.models import Cita
-from historias_clinicas.models import HistoriaClinica
-from mascotas.models import Mascota
-from propietarios_core.models import Propietario
-from vacunas.models import Vacuna
-from veterinarios.models import Veterinario
+from apps.aplicaciones_vacuna.models import AplicacionVacuna
+from apps.citas.models import Cita
+from apps.historias_clinicas.models import HistoriaClinica
+from apps.mascotas.models import Mascota
+from apps.propietarios_core.models import Propietario
+from apps.vacunas.models import Vacuna
+from apps.veterinarios.models import Veterinario
 
 
 User = get_user_model()

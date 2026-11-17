@@ -1,17 +1,19 @@
 import os
-from datetime import date, timedelta
+from datetime import date, datetime, time, timedelta
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
 from django.core.management.base import BaseCommand
-from propietarios_core.models import Propietario
-from mascotas.models import Mascota
-from historias_clinicas.models import HistoriaClinica
-from veterinarios.models import Veterinario
-from vacunas.models import Vacuna
-from aplicaciones_vacuna.models import AplicacionVacuna
+from django.utils import timezone
+from apps.propietarios_core.models import Propietario
+from apps.mascotas.models import Mascota
+from apps.historias_clinicas.models import HistoriaClinica
+from apps.citas.models import Cita
+from apps.veterinarios.models import Veterinario
+from apps.vacunas.models import Vacuna
+from apps.aplicaciones_vacuna.models import AplicacionVacuna
 
 class Command(BaseCommand):
-    help = 'Crea datos demo y cuentas del personal, sin citas ficticias.'
+    help = 'Crea datos de demostración, cuentas y citas de ejemplo.'
 
     def handle(self, *args, **options):
         props = []
@@ -34,6 +36,17 @@ class Command(BaseCommand):
         for i in range(3):
             if not AplicacionVacuna.objects.filter(mascota=pets[i], vacuna=vaccines[i]).exists():
                 AplicacionVacuna.objects.create(mascota=pets[i], vacuna=vaccines[i], veterinario=vets[i], fecha=date.today()-timedelta(days=30+i), dosis='1 ml', lote=f'DEMO-LOT-{i+1:03}', proxima_fecha=date.today()+timedelta(days=335), observaciones='Aplicación de demostración')
+        for i in range(3):
+            fecha = timezone.localdate() + timedelta(days=2 + i * 2)
+            fecha_hora = timezone.make_aware(
+                datetime.combine(fecha, time(hour=9 + i * 2))
+            )
+            Cita.objects.get_or_create(
+                mascota=pets[i],
+                veterinario=vets[i],
+                fecha_hora=fecha_hora,
+                defaults={'motivo':'Consulta de demostración','estado':Cita.Estado.PROGRAMADA},
+            )
         user = os.environ.get('DEMO_ADMIN_USER', 'admin')
         password = os.environ.get('DEMO_ADMIN_PASSWORD', 'Huellitas2026!')
         User = get_user_model()
@@ -109,4 +122,4 @@ class Command(BaseCommand):
             if vet.usuario_id in (None, staff_user.pk):
                 vet.usuario = staff_user
                 vet.save(update_fields=['usuario'])
-        self.stdout.write(self.style.SUCCESS('Datos demo y cuentas por rol listas; no se crearon citas de ejemplo.'))
+        self.stdout.write(self.style.SUCCESS('Datos de demostración, cuentas y citas de ejemplo listas.'))

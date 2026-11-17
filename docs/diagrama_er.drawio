@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-17T00:00:00.000Z" agent="Mozilla/5.0" version="24.7.17" type="device">
+  <diagram id="diagrama_er" name="diagrama_er">
+    <mxGraphModel dx="1900" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="MODELO LÓGICO DE DATOS" style="text;html=1;align=left;verticalAlign=middle;fontSize=24;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="25" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nota1" value="PK = llave primaria    FK = llave foránea    UNIQUE = valor unico" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="50" y="65" width="1200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="nota2" value="Cada línea une dos tablas; la etiqueta indica su cardinalidad." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="50" y="90" width="1200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="propietario" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_propietario&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_propietario_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_usuario_id BIGINT NULL UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;nombres VARCHAR(80)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;apellidos VARCHAR(80)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;documento VARCHAR(20) UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;telefono VARCHAR(20)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;correo VARCHAR(254)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;direccion VARCHAR(160)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="350" width="360" height="226" as="geometry" />
+        </mxCell>
+        <mxCell id="mascota" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_mascota&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_mascota_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_propietario_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;nombre VARCHAR(80)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;especie VARCHAR(40)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;raza VARCHAR(60)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;sexo VARCHAR(10)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;fecha_nacimiento DATE NULL&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;peso_kg DECIMAL(6,2) NULL&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;activo BOOLEAN&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="350" width="360" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="historia" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_historia_clinica&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_historia_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_mascota_id BIGINT UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;fecha_apertura DATE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;alergias TEXT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;antecedentes TEXT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;observaciones TEXT&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="940" y="350" width="360" height="178" as="geometry" />
+        </mxCell>
+        <mxCell id="veterinario" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_veterinario&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_veterinario_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_usuario_id BIGINT NULL UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;nombres VARCHAR(80)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;apellidos VARCHAR(80)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;documento VARCHAR(20) UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;tarjeta_profesional VARCHAR(40) UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;telefono VARCHAR(20)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;correo VARCHAR(254) UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;especialidad VARCHAR(80)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;activo BOOLEAN&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="350" width="400" height="274" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;auth_user (Django)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;username VARCHAR(150)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;email VARCHAR(254)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;Se muestran los campos usados&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="760" y="120" width="380" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="cita" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_cita&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_cita_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_mascota_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_veterinario_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;fecha_hora DATETIME&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;motivo VARCHAR(180)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;estado VARCHAR(12)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;notas TEXT&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="900" width="410" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="aplicacion" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_aplicacion_vacuna&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_aplicacion_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_mascota_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_vacuna_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;FK fk_veterinario_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;fecha DATE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;dosis VARCHAR(40)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;lote VARCHAR(60)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;proxima_fecha DATE NULL&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;observaciones TEXT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;UNIQUE (mascota, vacuna, fecha)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="960" y="900" width="430" height="274" as="geometry" />
+        </mxCell>
+        <mxCell id="vacuna" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;width:100%;font-family:Arial;font-size:12px;color:#000&quot;&gt;&lt;tr&gt;&lt;td style=&quot;border-bottom:1px solid #000;font-weight:bold&quot;&gt;tbl_vacuna&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;PK pk_vacuna_id BIGINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;nombre VARCHAR(100) UNIQUE&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;especie_objetivo VARCHAR(40)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;fabricante VARCHAR(100)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;intervalo_meses SMALLINT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;descripcion TEXT&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border-top:1px solid #999&quot;&gt;activa BOOLEAN&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="900" width="360" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="propietario" target="mascota">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="470" as="sourcePoint" />
+            <mxPoint x="500" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_1" value="1 : N" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="405" y="428" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_2" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="mascota" target="historia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="860" y="470" as="sourcePoint" />
+            <mxPoint x="940" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_2" value="1 : 0..1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="845" y="428" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_3" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="mascota" target="cita">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="600" as="sourcePoint" />
+            <mxPoint x="700" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_3" value="1 : N" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="733" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_4" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="mascota" target="aplicacion">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="600" as="sourcePoint" />
+            <mxPoint x="1100" y="900" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="900" y="670" />
+              <mxPoint x="900" y="820" />
+              <mxPoint x="1100" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_4" value="1 : N" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="875" y="783" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_5" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="veterinario" target="cita">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1400" y="455" as="sourcePoint" />
+            <mxPoint x="880" y="925" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1370" y="650" />
+              <mxPoint x="1370" y="780" />
+              <mxPoint x="880" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_5" value="1 : N" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1075" y="743" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_6" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="veterinario" target="aplicacion">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1400" y="555" as="sourcePoint" />
+            <mxPoint x="1390" y="970" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1420" y="700" />
+              <mxPoint x="1420" y="950" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_6" value="1 : N" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1385" y="803" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_7" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="vacuna" target="aplicacion">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1480" y="1050" as="sourcePoint" />
+            <mxPoint x="1390" y="1050" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_7" value="1 : N" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="1013" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_8" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="usuario" target="propietario">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="250" as="sourcePoint" />
+            <mxPoint x="240" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="810" y="295" />
+              <mxPoint x="240" y="295" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_8" value="0..1 : 0..1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="465" y="266" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_9" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1.5;startArrow=none;endArrow=none;" edge="1" parent="1" source="usuario" target="veterinario">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1090" y="250" as="sourcePoint" />
+            <mxPoint x="1600" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1090" y="315" />
+              <mxPoint x="1600" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="etiqueta_9" value="0..1 : 0..1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="285" width="110" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_final" value="Mascota y Vacuna tienen una relación N:M mediante tbl_aplicacion_vacuna. La tabla intermedia guarda fecha, dosis y veterinario." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1430" width="1750" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

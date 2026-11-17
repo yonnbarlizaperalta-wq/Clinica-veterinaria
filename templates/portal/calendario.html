@@ -1,4 +1,4 @@
-{% extends 'portal/base.html' %}
+{% extends 'base.html' %}
 {% block title %}Calendario de citas{% endblock %}
 {% block content %}
 <section class="dashboard-page calendar-page"><a class="back-link" href="{% if personal %}{% url 'agenda_personal' %}{% else %}{% url 'mi_cuenta' %}{% endif %}">Volver</a><div class="calendar-heading"><div><span class="portal-eyebrow">AGENDA HUELLITAS</span><h1>{{ mes }} <em>{{ year }}</em></h1><p>{{ citas_mes }} cita{{ citas_mes|pluralize:'s' }} programada{{ citas_mes|pluralize:'s' }} este mes.</p></div><div class="calendar-controls"><a href="?year={{ prev_year }}&month={{ prev_month }}" aria-label="Mes anterior">Mes anterior</a><a href="?year={{ next_year }}&month={{ next_month }}" aria-label="Mes siguiente">Mes siguiente</a></div></div>

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-17T00:00:00.000Z" agent="Mozilla/5.0" version="24.7.17" type="device">
+  <diagram id="diagrama_actores" name="diagrama_actores">
+    <mxGraphModel dx="1600" dy="1660" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1660" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="CASOS DE USO | CLÍNICA VETERINARIA" style="text;html=1;align=left;verticalAlign=middle;fontSize=24;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="intro" value="Las líneas indican qué actor puede realizar cada acción." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="62" width="1400" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="sistema" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="320" y="110" width="1210" height="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="nombre_sistema" value="Sistema web de la clínica veterinaria" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="345" y="118" width="700" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_1" value="Administrador" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="291" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_1_1" value="Administrar usuarios y roles" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="216" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_1_1" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_1" target="caso_1_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_1_2" value="Gestionar propietarios, mascotas y catálogos" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="291" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_1_2" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_1" target="caso_1_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_1_3" value="Consultar y administrar citas" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="366" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_1_3" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_1" target="caso_1_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_2" value="Recepcionista" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="631" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_2_1" value="Registrar propietarios y mascotas" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="556" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_2_1" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_2" target="caso_2_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_2_2" value="Agendar, reprogramar o cancelar citas" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="631" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_2_2" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_2" target="caso_2_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_2_3" value="Consultar calendario de citas" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="706" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_2_3" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_2" target="caso_2_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_3" value="Veterinario" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="971" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_3_1" value="Consultar agenda asignada" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="896" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_3_1" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_3" target="caso_3_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_3_2" value="Registrar consulta e historia clínica" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="971" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_3_2" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_3" target="caso_3_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_3_3" value="Registrar aplicación de vacuna" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1046" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_3_3" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_3" target="caso_3_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_4" value="Propietario" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1311" width="220" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_4_1" value="Crear cuenta y registrar mascota" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1236" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_4_1" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_4" target="caso_4_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_4_2" value="Solicitar, reprogramar o cancelar su cita" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1311" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_4_2" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_4" target="caso_4_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="caso_4_3" value="Consultar historia clínica y vacunas" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="1386" width="540" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="uso_4_3" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=none;" edge="1" parent="1" source="actor_4" target="caso_4_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_final" value="El calendario presenta las citas registradas en la base de datos." style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="345" y="1620" width="1000" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

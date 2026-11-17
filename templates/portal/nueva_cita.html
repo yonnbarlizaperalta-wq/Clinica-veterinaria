@@ -1,4 +1,4 @@
-{% extends 'portal/base.html' %}
+{% extends 'base.html' %}
 {% block title %}Solicitar una cita{% endblock %}
 {% block content %}
 <section class="form-page form-page-narrow"><a class="back-link" href="{% if personal %}{% url 'agenda_personal' %}{% else %}{% url 'mi_cuenta' %}{% endif %}"> Volver</a><div class="page-heading"><span class="portal-eyebrow">UN ESPACIO PARA SU BIENESTAR</span><h1>{% if personal %}Agenda una<br>{% else %}Solicita una<br>{% endif %}<em>cita veterinaria.</em></h1><p>Elige a quién traer, con quién quieres atenderte y el horario que te funciona.</p></div>

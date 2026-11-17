@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -46,7 +47,10 @@ def crear(request):
     form = CitaForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         cita = form.save()
+        messages.success(request, 'La cita quedó guardada correctamente.')
         return redirect('citas:detalle', cita_id=cita.cita_id)
+    if request.method == 'POST':
+        messages.error(request, 'No se pudo guardar la cita. Revisa los campos del formulario.')
 
     return render(request, 'citas/formulario.html', {'form': form, 'titulo': 'Agendar cita'})
 
@@ -60,7 +64,10 @@ def editar(request, cita_id):
     form = CitaForm(request.POST or None, instance=cita, veterinario_usuario=veterinario_usuario)
     if request.method == 'POST' and form.is_valid():
         cita = form.save()
+        messages.success(request, 'Los cambios de la cita quedaron guardados.')
         return redirect('citas:detalle', cita_id=cita.cita_id)
+    if request.method == 'POST':
+        messages.error(request, 'No se pudo actualizar la cita. Revisa los campos del formulario.')
 
     return render(request, 'citas/formulario.html', {'form': form, 'titulo': 'Editar cita'})
 
@@ -72,6 +79,7 @@ def eliminar(request, cita_id):
     cita = get_object_or_404(citas_visibles(request.user), cita_id=cita_id)
     if request.method == 'POST':
         cita.delete()
+        messages.success(request, 'La cita fue eliminada correctamente.')
         return redirect('citas:lista')
 
     return render(request, 'citas/confirmar_eliminacion.html', {'cita': cita})
